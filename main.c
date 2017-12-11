@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:19 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/07 15:03:25 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/11 17:05:51 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,18 +17,17 @@ int		main(int argc, char *argv[])
 {
 	int		***tab;
 	int		ret_read;
-	int		len_x;
-	int		len_y;
+	t_size	size;
 
 	tab = NULL;
 	if (argc > 1 && argc < 4)
 	{
-		len_x = -1;
-		len_y = -1;
-		if ((ret_read = ft_read(argv[1], tab, &len_x, &len_y)) < 0)
-		{
+		size.len_x = -1;
+		size.len_y = -1;
+		size.min_z = 0;
+		size.max_z = 0;
+		if ((ret_read = ft_read(argv[1], tab, &size)) < 0)
 			return (-1);
-		}
 	}
 	else
 		ft_putendl("Usage : ./fdf <filename> [ case_size z_size ]");

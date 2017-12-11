@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/11 11:38:54 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/11 17:08:42 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,30 +44,30 @@ static size_t	ft_count_nb_words(char const *s, char c)
 	return (0);
 }
 
-static int		size_tab(int fd, int *len_x, int *len_y)
+static int		size_tab(int fd, t_size *size)
 {
 	char	*line;
 	int		ret;
 	int		i;
 
-	*len_y = 0;
+	size->len_y = 0;
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		i = ft_count_nb_words(line, ' ');
-		if (*len_x == -1)
-			*len_x = i;
-		else if (*len_x != i)
+		if (size->len_x == -1)
+			size->len_x = i;
+		else if (size->len_x != i)
 		{
 			ft_putendl("Found wrong line length. Exiting");
 			return (-1);
 		}
-		(*len_y)++;
+		(size->len_y)++;
 	}
-	printf("len_x = %d\nlen_y = %d\n", *len_x, *len_y);
+	printf("len_x = %d\nlen_y = %d\n", size->len_x, size->len_y);
 	return (0);
 }
 
-static int		make_tab(int ***tab, int fd, int *len_x, int *len_y)
+static int		make_tab(int ***tab, int fd, t_size *size)
 {
 	char	*line;
 	int		ret;
@@ -75,41 +75,46 @@ static int		make_tab(int ***tab, int fd, int *len_x, int *len_y)
 	int		i;
 	int		j;
 
-	if (!(tab = (int***)ft_memalloc(sizeof(*tab) * (*len_y))))
+	if (!(tab = (int***)ft_memalloc(sizeof(*tab) * (size->len_y))))
 		return (-1);
 	i = -1;
-	while (++i < *len_y)
+	while (++i < size->len_y)
 	{
 		if ((ret = get_next_line(fd, &line)) < 0)
 			return (-1);
-		if (!(tab[i] = (int**)ft_memalloc(sizeof(**tab) * (*len_x))))
+		if (!(tab[i] = (int**)ft_memalloc(sizeof(**tab) * (size->len_x))))
 			return (-1);
 		tab_txt = ft_strsplit(line, ' ');
 		j = -1;
-		while (++j < *len_x)
+		while (++j < size->len_x)
 		{
 			if (!(tab[i][j] = (int*)ft_memalloc(sizeof(***tab) * 2)))
 				return (-1);
 			tab[i][j][0] = ft_atoi(tab_txt[j]);
+			if (tab[i][j][0] > size->max_z)
+				size->max_z = tab[i][j][0];
+			if (tab[i][j][0] < size->min_z)
+				size->min_z = tab[i][j][0];
 			ft_memdel((void**)&tab_txt[j]);
 		}
 	}
 	ft_memdel((void**)&tab_txt);
+	printf("max_z = %d\nmin_z = %d\n", size->max_z, size->min_z);
 	return (0);
 }
 
-int				ft_read(char *name, int ***tab, int *len_x, int *len_y)
+int				ft_read(char *name, int ***tab, t_size *size)
 {
 	int		fd;
 
 	if (name != NULL && ((fd = open(name, O_RDONLY)) > 2))
 	{
-		if (size_tab(fd, len_x, len_y) == -1)
+		if (size_tab(fd, size) == -1)
 			return (-1);
 		close(fd);
 		if ((fd = open(name, O_RDONLY)) > 2)
 		{
-			if (make_tab(tab, fd, len_x, len_y) == -1)
+			if (make_tab(tab, fd, size) == -1)
 				return (-1);
 			close(fd);
 			return (0);
