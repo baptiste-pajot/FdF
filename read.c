@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/11 17:08:42 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/11 18:40:14 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,7 +67,7 @@ static int		size_tab(int fd, t_size *size)
 	return (0);
 }
 
-static int		make_tab(int ***tab, int fd, t_size *size)
+static int		***make_tab(int ***tab, int fd, t_size *size)
 {
 	char	*line;
 	int		ret;
@@ -76,20 +76,20 @@ static int		make_tab(int ***tab, int fd, t_size *size)
 	int		j;
 
 	if (!(tab = (int***)ft_memalloc(sizeof(*tab) * (size->len_y))))
-		return (-1);
+		return (NULL);
 	i = -1;
 	while (++i < size->len_y)
 	{
 		if ((ret = get_next_line(fd, &line)) < 0)
-			return (-1);
+			return (NULL);
 		if (!(tab[i] = (int**)ft_memalloc(sizeof(**tab) * (size->len_x))))
-			return (-1);
+			return (NULL);
 		tab_txt = ft_strsplit(line, ' ');
 		j = -1;
 		while (++j < size->len_x)
 		{
 			if (!(tab[i][j] = (int*)ft_memalloc(sizeof(***tab) * 2)))
-				return (-1);
+				return (NULL);
 			tab[i][j][0] = ft_atoi(tab_txt[j]);
 			if (tab[i][j][0] > size->max_z)
 				size->max_z = tab[i][j][0];
@@ -100,24 +100,25 @@ static int		make_tab(int ***tab, int fd, t_size *size)
 	}
 	ft_memdel((void**)&tab_txt);
 	printf("max_z = %d\nmin_z = %d\n", size->max_z, size->min_z);
-	return (0);
+	return (tab);
 }
 
-int				ft_read(char *name, int ***tab, t_size *size)
+int				***ft_read(char *name, int ***tab, t_size *size)
 {
 	int		fd;
 
 	if (name != NULL && ((fd = open(name, O_RDONLY)) > 2))
 	{
 		if (size_tab(fd, size) == -1)
-			return (-1);
+			return (NULL);
 		close(fd);
 		if ((fd = open(name, O_RDONLY)) > 2)
 		{
-			if (make_tab(tab, fd, size) == -1)
-				return (-1);
+			tab = make_tab(tab, fd, size);
+			if (tab == NULL)
+				return (NULL);
 			close(fd);
-			return (0);
+			return (tab);
 		}
 	}
 	else
@@ -126,5 +127,5 @@ int				ft_read(char *name, int ***tab, t_size *size)
 		ft_putstr(name);
 		ft_putendl("\" \t This file exist ?");
 	}
-	return (-1);
+	return (NULL);
 }

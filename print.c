@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   print.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2017/12/06 15:15:19 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/11 18:41:28 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Created: 2017/12/11 17:49:06 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2017/12/11 18:41:57 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		main(int argc, char *argv[])
+int				print_tab(int ***tab, t_size *size)
 {
-	int		***tab;
-//	int		ret_read;
-	t_size	size;
+	int		i;
+	int		j;
 
-	tab = NULL;
-	if (argc > 1 && argc < 4)
+	i = -1;
+	while (++i < size->len_y)
 	{
-		size.len_x = -1;
-		size.len_y = -1;
-		size.min_z = 0;
-		size.max_z = 0;
-		if ((tab = ft_read(argv[1], tab, &size)) == NULL)
-			return (-1);
+		j = -1;
+		while (++j < size->len_x)
+		{
+			ft_putstr(" ");
+			ft_putnbr(tab[i][j][0]);
+		}
+		ft_putstr("\n");
 	}
-	else
-		ft_putendl("Usage : ./fdf <filename> [ case_size z_size ]");
-	print_tab(tab, &size);
-	display(&size);
 	return (0);
 }

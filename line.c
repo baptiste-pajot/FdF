@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/11 16:26:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/11 16:26:40 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/11 17:25:00 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,7 +61,7 @@ static int		ft_line1(t_env e, t_line line)
 	return (0);
 }
 
-int		ft_line(t_env e, t_line line)
+int				ft_line(t_env e, t_line line)
 {
 	int		delta_x;
 	int		delta_y;
