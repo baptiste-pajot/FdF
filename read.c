@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/07 19:36:16 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/11 11:38:54 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,8 +67,11 @@ static int		size_tab(int fd, int *len_x, int *len_y)
 	return (0);
 }
 
-static int		make_tab(int ***tab, int *len_x, int *len_y)
+static int		make_tab(int ***tab, int fd, int *len_x, int *len_y)
 {
+	char	*line;
+	int		ret;
+	char	**tab_txt;
 	int		i;
 	int		j;
 
@@ -77,36 +80,16 @@ static int		make_tab(int ***tab, int *len_x, int *len_y)
 	i = -1;
 	while (++i < *len_y)
 	{
+		if ((ret = get_next_line(fd, &line)) < 0)
+			return (-1);
 		if (!(tab[i] = (int**)ft_memalloc(sizeof(**tab) * (*len_x))))
 			return (-1);
+		tab_txt = ft_strsplit(line, ' ');
 		j = -1;
 		while (++j < *len_x)
 		{
 			if (!(tab[i][j] = (int*)ft_memalloc(sizeof(***tab) * 2)))
 				return (-1);
-		}
-	}
-	return (0);
-}
-
-static int		fill_tab(int ***tab, int fd, int *len_x, int *len_y)
-{
-	char	*line;
-	int		ret;
-	char	**tab_txt;
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < *len_y)
-	{
-		if ((ret = get_next_line(fd, &line)) < 0)
-			return (-1);
-		tab_txt = ft_strsplit(line, ' ');
-		ft_putstr("OK");
-		j = -1;
-		while (++j < *len_x)
-		{
 			tab[i][j][0] = ft_atoi(tab_txt[j]);
 			ft_memdel((void**)&tab_txt[j]);
 		}
@@ -119,27 +102,24 @@ int				ft_read(char *name, int ***tab, int *len_x, int *len_y)
 {
 	int		fd;
 
-	if (name != NULL)
+	if (name != NULL && ((fd = open(name, O_RDONLY)) > 2))
 	{
+		if (size_tab(fd, len_x, len_y) == -1)
+			return (-1);
+		close(fd);
 		if ((fd = open(name, O_RDONLY)) > 2)
 		{
-			if (size_tab(fd, len_x, len_y) == -1)
+			if (make_tab(tab, fd, len_x, len_y) == -1)
 				return (-1);
 			close(fd);
-		}
-		else
-		{
-			ft_putstr("Impossible to open file \"");
-			ft_putstr(name);
-			ft_putendl("\" \t This file exist ?");
-		}
-		if ((fd = open(name, O_RDONLY)) > 2)
-		{
-			if ((make_tab(tab, len_x, len_y) == -1) ||
-					(fill_tab(tab, fd, len_x, len_y) == -1))
-				return (-1);
-			close(fd);
+			return (0);
 		}
 	}
-	return (0);
+	else
+	{
+		ft_putstr("Impossible to open file \"");
+		ft_putstr(name);
+		ft_putendl("\" \t This file exist ?");
+	}
+	return (-1);
 }
