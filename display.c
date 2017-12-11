@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 14:30:27 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/07 13:22:12 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/07 19:15:15 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,6 @@ int		display(void)
 	t_env	e;
 	int		x;
 	int		y;
-
 
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, 400, 400, "mlx bpajot");

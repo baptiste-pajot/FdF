@@ -6,10 +6,11 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/07 13:19:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/07 19:14:38 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 # include "libft/libft.h"
@@ -21,7 +22,7 @@ typedef struct	s_env
 	void		*win;
 }				t_env;
 
-int		ft_read(char *name, int ***tab, int *len_x, int *len_y);
-int		display(void);
+int				ft_read(char *name, int ***tab, int *len_x, int *len_y);
+int				display(void);
 
 #endif
