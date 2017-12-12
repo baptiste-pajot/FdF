@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 14:30:27 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/11 19:15:50 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/12 11:47:18 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,6 @@ int				display(t_size *size)
 	t_line	line;
 	int		x;
 	int		y;
-	
 
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, 2500, 1300, "mlx bpajot");
@@ -37,17 +36,19 @@ int				display(t_size *size)
 		y = -1;
 		while (++y < size->len_y)
 		{
-			line.x1 = x * 10 + 10;
-			line.y1 = y * 10 + 10 ;
-			line.x2 = line.x1 + 10;
+			line.x1 = x * 100 + 100;
+			line.y1 = y * 100 + 100 ;
+			line.x2 = line.x1 + 100;
 			line.y2 = line.y1;
 			line.color1 = 0x00FF00;
+			line.color2 = 0xFF0000;
 			ft_line(e, line);
-			line.x1 = x * 10 + 10;
-			line.y1 = y * 10 + 10 ;
+			line.x1 = x * 100 + 100;
+			line.y1 = y * 100 + 100;
 			line.x2 = line.x1;
-			line.y2 = line.y1 + 10;
-			line.color1 = 0x00FF00;
+			line.y2 = line.y1 + 100;
+			line.color1 = 0x0000FF;
+			line.color2 = 0xFFFFFF;
 			ft_line(e, line);
 		}
 	}
