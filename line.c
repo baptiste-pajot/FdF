@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/11 256:26:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/12 11:46:19 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/12 16:33:54 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,39 +37,14 @@ static int		ft_color(t_line line, int min, int max, int x)
 
 static int		ft_line2(t_env e, t_line line)
 {
-	int		y;
-
-	if (line.y1 > line.y2 || (line.y1 == line.y2 && line.x1 > line.x2))
-		ft_swap(&line.x1, &line.x2);
-	if (line.y1 > line.y2)
-		ft_swap(&line.y1, &line.y2);
-	if (line.y1 != line.y2)
-	{
-		y = line.y1 - 1;
-		while (++y <= line.y2)
-			mlx_pixel_put(e.mlx, e.win, line.x1 + (line.x2 - line.x1) *
-				(y - line.y1) / (line.y2 - line.y1), y, ft_color(line, line.y1,
-				line.y2, y));
-	}
-	else
-	{
-		y = line.x1 - 1;
-		while (++y <= line.x2)
-			mlx_pixel_put(e.mlx, e.win, y, line.y1, ft_color(line, line.x1,
-				line.x2, y));
-	}
-	return (0);
-}
-
-static int		ft_line1(t_env e, t_line line)
-{
 	int		x;
 
-	if (line.x1 > line.x2 || (line.x1 == line.x2 && line.y1 > line.y2))
-		ft_swap(&line.y1, &line.y2);
 	if (line.x1 > line.x2)
+	{
 		ft_swap(&line.x1, &line.x2);
-	if (line.x1 != line.x2)
+		ft_swap(&line.y1, &line.y2);
+	}
+	if (line.y1 != line.y2)
 	{
 		x = line.x1 - 1;
 		while (++x <= line.x2)
@@ -79,10 +54,37 @@ static int		ft_line1(t_env e, t_line line)
 	}
 	else
 	{
-		x = line.y1 - 1;
-		while (++x <= line.y2)
-			mlx_pixel_put(e.mlx, e.win, line.x1, x, ft_color(line, line.y1,
-				line.y2, x));
+		x = line.x1 - 1;
+		while (++x <= line.x2)
+			mlx_pixel_put(e.mlx, e.win, x, line.y1, ft_color(line, line.x1,
+				line.x2, x));
+	}
+	return (0);
+}
+
+static int		ft_line1(t_env e, t_line line)
+{
+	int		y;
+
+	if (line.y1 > line.y2)
+	{
+		ft_swap(&line.y1, &line.y2);
+		ft_swap(&line.x1, &line.x2);
+	}
+	if (line.x1 != line.x2)
+	{
+		y = line.y1 - 1;
+		while (++y <= line.y2)
+			mlx_pixel_put(e.mlx, e.win, line.x1 + (line.x2 - line.x1) *
+				(y - line.y1) / (line.y2 - line.y1), y, ft_color(line, line.y1,
+				line.y2, y));
+	}
+	else
+	{
+		y = line.y1 - 1;
+		while (++y <= line.y2)
+			mlx_pixel_put(e.mlx, e.win, line.x1, y, ft_color(line, line.y1,
+				line.y2, y));
 	}
 	return (0);
 }

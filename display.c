@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 14:30:27 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/12 11:47:18 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/12 17:19:33 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,35 +21,65 @@ static int		my_key_funct(int keycode, void *param)
 	return (0);
 }
 
-int				display(t_size *size)
+static int		***tab_proj(int ***tab, t_size *size)
+{
+	int		i;
+	int		j;
+	double	c1;
+	double	c2;
+	double	c3;
+
+	c1 = sqrt(2) / 2 * size->scale_xy;
+	c2 = sqrt(2.0 / 3.0) * size->scale_z;
+	c3 = 1 / sqrt(6) * size->scale_xy;
+
+	i = -1;
+	while (++i < size->len_y)
+	{
+		j = -1;
+		while (++j < size->len_x)
+		{
+			tab[i][j][2] = 1250 + c1 * (j - i);
+			tab[i][j][3] = 400 - c2 * tab[i][j][0] + c3 * (i + j);
+		}
+	}
+	return (tab);
+}
+
+int				display(int ***tab, t_size *size)
 {
 	t_env	e;
 	t_line	line;
-	int		x;
-	int		y;
+	int		i;
+	int		j;
 
+	line.color1 = 0xFFFFFF;
+	line.color2 = 0xFFFFFF;
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, 2500, 1300, "mlx bpajot");
-	x = -1;
-	while (++x < size->len_x)
+	tab_proj(tab, size);
+	i = -1;
+	while (++i < size->len_y)
 	{
-		y = -1;
-		while (++y < size->len_y)
+		j = -1;
+		while (++j < size->len_x)
 		{
-			line.x1 = x * 100 + 100;
-			line.y1 = y * 100 + 100 ;
-			line.x2 = line.x1 + 100;
-			line.y2 = line.y1;
-			line.color1 = 0x00FF00;
-			line.color2 = 0xFF0000;
-			ft_line(e, line);
-			line.x1 = x * 100 + 100;
-			line.y1 = y * 100 + 100;
-			line.x2 = line.x1;
-			line.y2 = line.y1 + 100;
-			line.color1 = 0x0000FF;
-			line.color2 = 0xFFFFFF;
-			ft_line(e, line);
+			if (j < size->len_x - 1)
+			{
+				line.x1 = tab[i][j][2];
+				line.y1 = tab[i][j][3];
+				line.x2 = tab[i][j + 1][2];
+				line.y2 = tab[i][j + 1][3];
+				ft_line(e, line);
+			}
+			if (i < size->len_y - 1)
+			{
+				line.x1 = tab[i][j][2];
+				line.y1 = tab[i][j][3];
+				line.x2 = tab[i + 1][j][2];
+				line.y2 = tab[i + 1][j][3];
+				ft_line(e, line);
+			}
 		}
 	}
 	mlx_key_hook(e.win, my_key_funct, 0);

@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/11 18:40:14 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/12 15:03:16 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,7 +70,6 @@ static int		size_tab(int fd, t_size *size)
 static int		***make_tab(int ***tab, int fd, t_size *size)
 {
 	char	*line;
-	int		ret;
 	char	**tab_txt;
 	int		i;
 	int		j;
@@ -80,7 +79,7 @@ static int		***make_tab(int ***tab, int fd, t_size *size)
 	i = -1;
 	while (++i < size->len_y)
 	{
-		if ((ret = get_next_line(fd, &line)) < 0)
+		if (get_next_line(fd, &line) < 0)
 			return (NULL);
 		if (!(tab[i] = (int**)ft_memalloc(sizeof(**tab) * (size->len_x))))
 			return (NULL);
@@ -88,7 +87,7 @@ static int		***make_tab(int ***tab, int fd, t_size *size)
 		j = -1;
 		while (++j < size->len_x)
 		{
-			if (!(tab[i][j] = (int*)ft_memalloc(sizeof(***tab) * 2)))
+			if (!(tab[i][j] = (int*)ft_memalloc(sizeof(***tab) * 4)))
 				return (NULL);
 			tab[i][j][0] = ft_atoi(tab_txt[j]);
 			if (tab[i][j][0] > size->max_z)

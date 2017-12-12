@@ -1,0 +1,35 @@
+# **************************************************************************** #
+#                                                           LE - /             #
+#                                                               /              #
+#    todolist                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
+#    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: 2017/12/12 16:49:26 by bpajot       #+#   ##    ##    #+#        #
+#    Updated: 2017/12/12 17:17:05 by bpajot      ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
+# **************************************************************************** #
+
+- utilisation image minilibx
+- norme
+- malloc/free
+- erreur perror strerror
+- verif Makefile
+- installation librairie check compilation
+- verif fonctions autorisees
+- recuperation des couleurs dans le fichier
+- echelles automatiques
+- point de centre du dessin
+- parametres de l'executable
+	- changement echelles
+	- activation couleur en fonction altitude
+	- activation palette couleur desiree
+- interaction clavier/souris
+	- rotation
+	- deplacement
+	- changement perspective iso/parallelle/conique
+	- ...
+- legende HUD raccourci commandes + infos
+- gestion faces cachees
+
