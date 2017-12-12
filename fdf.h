@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/12 15:57:15 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/12 18:21:22 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,12 @@ typedef struct	s_size
 	int			scale_xy;
 	int			scale_z;
 }				t_size;
+
+typedef struct	s_ij
+{
+	int			i;
+	int			j;
+}				t_ij;
 
 typedef struct	s_line
 {

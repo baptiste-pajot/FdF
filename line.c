@@ -5,8 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2017/12/11 256:26:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/12 16:33:54 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Created: 2017/12/12 17:30:49 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2017/12/12 17:31:49 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,17 +23,16 @@ static int		ft_color(t_line line, int min, int max, int x)
 		return (line.color1);
 	else
 	{
-		red =  line.color1 % 16777216 / 65536 + 100 * (x - min) / (max - min) *
+		red = line.color1 % 16777216 / 65536 + 100 * (x - min) / (max - min) *
 			(line.color2 % 16777216 / 65536 - line.color1 % 16777216 / 65536)
 			/ 100;
-		green =  line.color1 % 65536 / 256 + 100 * (x - min) / (max - min) *
-			(line.color2 % 65536 / 256  - line.color1 % 65536 / 256) / 100;
-		blue =  line.color1 % 256 + 100 * (x - min) / (max - min) *
+		green = line.color1 % 65536 / 256 + 100 * (x - min) / (max - min) *
+			(line.color2 % 65536 / 256 - line.color1 % 65536 / 256) / 100;
+		blue = line.color1 % 256 + 100 * (x - min) / (max - min) *
 			(line.color2 % 256 - line.color1 % 256) / 100;
 		return (red * 65536 + green * 256 + blue);
 	}
 }
-
 
 static int		ft_line2(t_env e, t_line line)
 {

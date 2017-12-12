@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/12 15:03:16 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/12 17:53:32 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,10 +67,8 @@ static int		size_tab(int fd, t_size *size)
 	return (0);
 }
 
-static int		***make_tab(int ***tab, int fd, t_size *size)
+static int		***make_tab(int ***tab, t_size *size)
 {
-	char	*line;
-	char	**tab_txt;
 	int		i;
 	int		j;
 
@@ -79,17 +77,36 @@ static int		***make_tab(int ***tab, int fd, t_size *size)
 	i = -1;
 	while (++i < size->len_y)
 	{
-		if (get_next_line(fd, &line) < 0)
-			return (NULL);
 		if (!(tab[i] = (int**)ft_memalloc(sizeof(**tab) * (size->len_x))))
 			return (NULL);
-		tab_txt = ft_strsplit(line, ' ');
 		j = -1;
 		while (++j < size->len_x)
 		{
 			if (!(tab[i][j] = (int*)ft_memalloc(sizeof(***tab) * 4)))
 				return (NULL);
+		}
+	}
+	return (tab);
+}
+
+static int		***fill_tab(int ***tab, int fd, t_size *size)
+{
+	char	*line;
+	char	**tab_txt;
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < size->len_y)
+	{
+		if (get_next_line(fd, &line) < 0)
+			return (NULL);
+		tab_txt = ft_strsplit(line, ' ');
+		j = -1;
+		while (++j < size->len_x)
+		{
 			tab[i][j][0] = ft_atoi(tab_txt[j]);
+			tab[i][j][1] = 0xFFFFFF;
 			if (tab[i][j][0] > size->max_z)
 				size->max_z = tab[i][j][0];
 			if (tab[i][j][0] < size->min_z)
@@ -98,7 +115,6 @@ static int		***make_tab(int ***tab, int fd, t_size *size)
 		}
 	}
 	ft_memdel((void**)&tab_txt);
-	printf("max_z = %d\nmin_z = %d\n", size->max_z, size->min_z);
 	return (tab);
 }
 
@@ -113,8 +129,9 @@ int				***ft_read(char *name, int ***tab, t_size *size)
 		close(fd);
 		if ((fd = open(name, O_RDONLY)) > 2)
 		{
-			tab = make_tab(tab, fd, size);
-			if (tab == NULL)
+			if ((tab = make_tab(tab, size)) == NULL)
+				return (NULL);
+			if ((tab = fill_tab(tab, fd, size)) == NULL)
 				return (NULL);
 			close(fd);
 			return (tab);
