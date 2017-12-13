@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 11:19:52 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 12:20:26 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,8 +32,10 @@ typedef struct	s_size
 	int			len_y;
 	int			max_z;
 	int			min_z;
-	int			scale_xy;
-	int			scale_z;
+	double		scale_xy_ini;
+	double		scale_xy;
+	double		scale_z_ini;
+	double		scale_z;
 }				t_size;
 
 typedef struct	s_ij
@@ -56,6 +58,6 @@ int				***ft_read(char *name, int ***tab, t_size *size);
 int				display(int ***tab, t_size *size);
 int				ft_line(t_env e, t_line line);
 int				print_tab(int ***tab, t_size *size, int indice);
-void			tab_proj(int ***tab, t_size *size);
+void			tab_proj(int ***tab, t_size *size, t_env e);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:19 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 11:38:49 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 12:21:34 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,12 +26,12 @@ int		main(int argc, char *argv[])
 		size.len_y = -1;
 		size.min_z = 0;
 		size.max_z = 0;
-		size.scale_xy = 10;
+		size.scale_xy_ini = -1;
 		if (argc > 2 && (ret = ft_atoi(argv[2])) > 0)
-			size.scale_xy = ret;
-		size.scale_z = 10;
+			size.scale_xy_ini = ret;
+		size.scale_z_ini = -1;
 		if (argc > 3 && (ret = ft_atoi(argv[3])) > 0)
-			size.scale_z = ret;
+			size.scale_z_ini = ret;
 		if ((tab = ft_read(argv[1], tab, &size)) == NULL)
 			return (-1);
 //		print_tab(tab, &size, 0);
