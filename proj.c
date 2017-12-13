@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   proj.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2017/12/06 15:15:19 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 10:36:06 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2017/12/13 10:08:35 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		main(int argc, char *argv[])
+void		tab_proj(int ***tab, t_size *size)
 {
-	int		***tab;
-	t_size	size;
-	int		ret;
+	int		i;
+	int		j;
+	double	c1;
+	double	c2;
+	double	c3;
 
-	tab = NULL;
-	if (argc > 1 && argc < 5)
+	c1 = sqrt(2) / 2 * size->scale_xy;
+	c2 = sqrt(2.0 / 3.0) * size->scale_z;
+	c3 = 1 / sqrt(6) * size->scale_xy;
+	i = -1;
+	while (++i < size->len_y)
 	{
-		size.len_x = -1;
-		size.len_y = -1;
-		size.min_z = 0;
-		size.max_z = 0;
-		size.scale_xy = 10;
-		size.scale_z = 10;
-		if ((tab = ft_read(argv[1], tab, &size)) == NULL)
-			return (-1);
-		print_tab(tab, &size, 0);
-		ret = display(tab, &size);
-		return (ret);
+		j = -1;
+		while (++j < size->len_x)
+		{
+			tab[i][j][2] = 1250 + c1 * (j - i);
+			tab[i][j][3] = 400 - c2 * tab[i][j][0] + c3 * (i + j);
+		}
 	}
-	else
-		ft_putendl("Usage : ./fdf <filename> [ case_size z_size ]");
-	return (-1);
 }
