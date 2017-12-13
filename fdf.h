@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 10:59:13 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 11:19:52 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,8 @@ typedef struct	s_env
 {
 	void		*mlx;
 	void		*win;
+	int			width;
+	int			height;
 }				t_env;
 
 typedef struct	s_size

@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:19 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 10:45:24 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 11:38:49 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ int		main(int argc, char *argv[])
 			size.scale_z = ret;
 		if ((tab = ft_read(argv[1], tab, &size)) == NULL)
 			return (-1);
-		print_tab(tab, &size, 0);
+//		print_tab(tab, &size, 0);
 		ret = display(tab, &size);
 		return (ret);
 	}

@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 14:30:27 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 11:00:58 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 11:38:53 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,14 +57,31 @@ static void		display_line(int ***tab, t_size *size, t_env e)
 	}
 }
 
+static void		display_separator(t_env e)
+{
+	t_line	line;
+
+	line.x1 = 300;
+	line.y1 = 0;
+	line.color1 = 0xFFFFFF;
+	line.x2 = line.x1;
+	line.y2 = e.height - 1;
+	line.color2 = line.color1;
+	ft_line(e, line);
+}
+
 int				display(int ***tab, t_size *size)
 {
 	t_env	e;
 
+	e.width = 2400;
+	e.height = 1200;
 	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, 2500, 1300, "mlx bpajot");
+	e.win = mlx_new_window(e.mlx, e.width, e.height, "FDF bpajot");
 	tab_proj(tab, size);
 	display_line(tab, size, e);
+	if (e.width > 1000)
+		display_separator(e);
 	mlx_key_hook(e.win, my_key_funct, 0);
 	mlx_loop(e.mlx);
 	return (0);
