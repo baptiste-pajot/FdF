@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:19 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 10:36:06 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 10:40:11 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,11 @@ int		main(int argc, char *argv[])
 		size.min_z = 0;
 		size.max_z = 0;
 		size.scale_xy = 10;
+		if (argc > 2 && (ret = ft_atoi(argv[2])) > 0)
+			size.scale_xy = ret;
 		size.scale_z = 10;
+		if (argc > 3 && (ret = ft_atoi(argv[3])) > 0)
+			size.scale_z = ret;
 		if ((tab = ft_read(argv[1], tab, &size)) == NULL)
 			return (-1);
 		print_tab(tab, &size, 0);
