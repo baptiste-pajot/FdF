@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 12:20:26 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 15:42:19 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,5 +59,6 @@ int				display(int ***tab, t_size *size);
 int				ft_line(t_env e, t_line line);
 int				print_tab(int ***tab, t_size *size, int indice);
 void			tab_proj(int ***tab, t_size *size, t_env e);
+void			tab_proj_ini(int ***tab, t_size *size, t_env e);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 14:30:27 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 12:24:33 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 17:35:06 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,9 +78,8 @@ int				display(int ***tab, t_size *size)
 	e.height = 1200;
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, e.width, e.height, "FDF bpajot");
-	tab_proj_ini(tab, size, e);
-	if (size->scale_xy_ini == -1 || size->scale_z_ini == -1)
-		tab_proj(tab, size, e);
+	tab_proj(tab, size, e);
+	ft_putstr("projection OK \n");
 	display_line(tab, size, e);
 	if (e.width >= 1000)
 		display_separator(e);

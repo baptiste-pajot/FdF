@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/12 17:53:32 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 19:29:30 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,6 +95,7 @@ static int		***fill_tab(int ***tab, int fd, t_size *size)
 	char	**tab_txt;
 	int		i;
 	int		j;
+//	char	*p;
 
 	i = -1;
 	while (++i < size->len_y)
@@ -106,7 +107,10 @@ static int		***fill_tab(int ***tab, int fd, t_size *size)
 		while (++j < size->len_x)
 		{
 			tab[i][j][0] = ft_atoi(tab_txt[j]);
-			tab[i][j][1] = 0xFFFFFF;
+			/*if ((p = ft_strchr(tab_txt[j], ','))!= 0)
+				tab[i][j][1] = ft_atoi(p);
+			else*/
+				tab[i][j][1] = 0xFFFFFF;
 			if (tab[i][j][0] > size->max_z)
 				size->max_z = tab[i][j][0];
 			if (tab[i][j][0] < size->min_z)

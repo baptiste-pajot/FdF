@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 13:42:02 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 19:08:33 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,40 +14,36 @@
 #include "fdf.h"
 #include <stdio.h>
 
-static void		tab_scale(int ***tab, t_size *size, t_env e)
+static double	tab_scale_xy(t_size *size, t_env e)
 {
-	int		height_proj;
-	int		width_proj;
+	double		width_proj;
+	double		scale_xy;
 
-	width_proj = tab[size->len_x][0][2] - tab[0][size->len_y - 1][2];
-	printf("width_proj = %d\n", width_proj);
-
-
-
+	width_proj = sqrt(2) / 2 * (size->len_y + size->len_x - 2);
+	printf("width_proj = %lf\n", width_proj);
+	if (e.width >= 1000)
+		scale_xy = (e.width - 300) / width_proj * 0.5;
+	else
+		scale_xy = e.width / width_proj * 0.5;
+	printf("scale_xy = %lf\n", scale_xy);
+	return (scale_xy);
 }
 
-void			tab_proj_ini(int ***tab, t_size *size, t_env e)
+static double	tab_scale_z(t_size *size, t_env e)
 {
-	int		i;
-	int		j;
-	double	c1;
+	double		height_proj;
+	double		scale_z;
 	double	c2;
 	double	c3;
 
-	c1 = sqrt(2) / 2 * 100;
-	c2 = sqrt(2.0 / 3.0) * 100;
-	c3 = 1 / sqrt(6) * 100;
-	i = -1;
-	while (++i < size->len_y)
-	{
-		j = -1;
-		while (++j < size->len_x)
-		{
-			tab[i][j][2] = c1 * (j - i);
-			tab[i][j][3] = - c2 * tab[i][j][0] + c3 * (i + j);
-		}
-	}
-	
+	c2 = sqrt(2.0 / 3.0);
+	c3 = 1 / sqrt(6);
+	height_proj = - c2 * size->min_z + c3 * (size->len_x + size->len_y - 2)
+		+ c2 * size->max_z;
+	printf("height_proj = %lf\n", height_proj);
+	scale_z = e.height / height_proj * 0.5;
+	printf("scale_z = %lf\n", scale_z);
+	return (scale_z);
 }
 
 void			tab_proj(int ***tab, t_size *size, t_env e)
@@ -58,18 +54,31 @@ void			tab_proj(int ***tab, t_size *size, t_env e)
 	double	c2;
 	double	c3;
 
+	if (size->scale_xy_ini  == - 1)
+		size->scale_xy = tab_scale_xy(size, e);
+	else
+		size->scale_xy =  size->scale_xy_ini;
+	if (size->scale_z_ini  == - 1)
+		size->scale_z = tab_scale_z(size, e);
+	else
+		size->scale_z =  size->scale_z_ini;
 	c1 = sqrt(2) / 2 * size->scale_xy;
-	c2 = sqrt(2.0 / 3.0) * size->scale_z;
 	c3 = 1 / sqrt(6) * size->scale_xy;
+	c2 = sqrt(2.0 / 3.0) * size->scale_z;
 	i = -1;
 	while (++i < size->len_y)
 	{
 		j = -1;
 		while (++j < size->len_x)
 		{
-			tab[i][j][2] = c1 * (j - i);
-			tab[i][j][3] = - c2 * tab[i][j][0] + c3 * (i + j);
+			tab[i][j][2] = e.width / 2 - c1 * (size->len_x - size->len_y)
+				/ 2 + c1 * (j - i);
+			if (e.width >= 1000)
+				tab[i][j][2] = 300 + (e.width - 300) / 2 - c1 * 
+					(size->len_x - size->len_y) / 2 + c1 * (j - i);
+			tab[i][j][3] = e.height / 2 + ((size->max_z - size->min_z) * c2
+				- c3 * (size->len_x + size->len_y - 2)) / 2
+				- c2 * tab[i][j][0] + c3 * (i + j);
 		}
 	}
-	
 }
