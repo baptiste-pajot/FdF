@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 19:29:30 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/13 21:32:07 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,7 +95,7 @@ static int		***fill_tab(int ***tab, int fd, t_size *size)
 	char	**tab_txt;
 	int		i;
 	int		j;
-//	char	*p;
+	char	*p;
 
 	i = -1;
 	while (++i < size->len_y)
@@ -107,9 +107,11 @@ static int		***fill_tab(int ***tab, int fd, t_size *size)
 		while (++j < size->len_x)
 		{
 			tab[i][j][0] = ft_atoi(tab_txt[j]);
-			/*if ((p = ft_strchr(tab_txt[j], ','))!= 0)
+			if ((p = ft_strstr(tab_txt[j], ",0x")) != 0)
+				tab[i][j][1] = ft_atoi_base(p + 3, 16);
+			else if ((p = ft_strchr(tab_txt[j], ',')) != 0)
 				tab[i][j][1] = ft_atoi(p);
-			else*/
+			else
 				tab[i][j][1] = 0xFFFFFF;
 			if (tab[i][j][0] > size->max_z)
 				size->max_z = tab[i][j][0];
@@ -119,6 +121,8 @@ static int		***fill_tab(int ***tab, int fd, t_size *size)
 		}
 	}
 	ft_memdel((void**)&tab_txt);
+	printf("max_z = %d\n", size->max_z);
+	printf("min_z = %d\n", size->min_z);
 	return (tab);
 }
 
