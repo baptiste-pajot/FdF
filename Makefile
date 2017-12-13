@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 16:37:12 by bpajot            #+#    #+#              #
-#    Updated: 2017/12/11 17:53:16 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2017/12/13 10:59:36 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,12 @@
 NAME = fdf
 CC = gcc
 CC_FLAGS = -Wall -Wextra -Werror
-LMLX_FLAGS = -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
+LMLX_FLAGS = -L ../minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
 LFT_FLAGS = -L libft/ -lft
 PATH_SRCS = ./
 PATH_OBJS = ./
 PATH_INCS = ./
-FILES = main.c read.c display.c line.c print.c
+FILES = main.c read.c display.c line.c print.c proj.c
 SRCS = $(addprefix $(PATH_SRCS), $(FILES))
 OBJS = $(addprefix $(PATH_OBJS), $(FILES:.c=.o))
 INCS = fdf.h libft/libft.h
