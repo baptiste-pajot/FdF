@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/13 21:56:31 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2017/12/14 11:30:20 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -32,5 +32,8 @@
 	- ...
 - legende HUD raccourci commandes + infos
 - gestion faces cachees
-
-
+- repere x y z dans un coin
+- echelle graduee
+- grande map forum intra 42
+- tester changement taille fenetre
+- faire map plate pour verifier/regler leger decalage proj
