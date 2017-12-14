@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 15:42:19 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/14 18:04:13 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,7 @@ typedef struct	s_env
 	void		*win;
 	int			width;
 	int			height;
+	char		*name;
 }				t_env;
 
 typedef struct	s_size
@@ -55,7 +56,7 @@ typedef struct	s_line
 }				t_line;
 
 int				***ft_read(char *name, int ***tab, t_size *size);
-int				display(int ***tab, t_size *size);
+int				display(int ***tab, t_size *size, char	*name);
 int				ft_line(t_env e, t_line line);
 int				print_tab(int ***tab, t_size *size, int indice);
 void			tab_proj(int ***tab, t_size *size, t_env e);
