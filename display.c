@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 20:26:59 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 21:29:07 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,9 +67,10 @@ static void		display_black(t_all *all)
 
 static int		keyboard_funct(int keycode, t_all *all)
 {
+	printf("keycode = %d\n", keycode);
 	if (keycode == 53 || keycode == 12)
 		exit(0);
-	if (keycode >= 123 && keycode <= 126)
+	if ((keycode >= 123 && keycode <= 126) || (keycode >= 18 && keycode <= 23))
 	{
 		if (keycode == 126)
 			all->size.center_y -= 50;
@@ -79,7 +80,25 @@ static int		keyboard_funct(int keycode, t_all *all)
 			all->size.center_x -= 50;
 		if (keycode == 124)
 			all->size.center_x += 50;
-		all->size.center_modify = 1;
+		if (keycode == 18)
+		{
+			all->size.scale_xy /= 1.2;
+			all->size.scale_z /= 1.2;
+		}
+		if (keycode == 19)
+		{
+			all->size.scale_xy *= 1.2;
+			all->size.scale_z *= 1.2;
+		}
+		if (keycode == 20)
+			all->size.scale_xy /= 1.2;
+		if (keycode == 21)
+			all->size.scale_xy *= 1.2;
+		if (keycode == 23)
+			all->size.scale_z /= 1.2;
+		if (keycode == 22)
+			all->size.scale_z *= 1.2;
+		all->size.modify = 1;
 		tab_proj(all);
 		ft_putstr("projection OK \n");
 		display_black(all);
@@ -98,12 +117,20 @@ int				display(t_all *all, char *name)
 		all->e.name = name;
 	if (ft_strlen(all->e.name) > 20)
 		all->e.name = ft_strjoin(ft_strsub(all->e.name, 0, 17), "...");
-	all->e.width = WIN_WIDTH;
-	all->e.height = WIN_HEIGHT;
+	if (W_WIDTH > 99 && W_WIDTH < 2401 && W_HEIGHT > 99 && W_HEIGHT < 1201)
+	{
+		all->e.width = W_WIDTH;
+		all->e.height = W_HEIGHT;
+	}
+	else
+	{
+		all->e.width = 2400;
+		all->e.height = 1200;
+	}
 	all->e.mlx = mlx_init();
 	all->e.win = mlx_new_window(all->e.mlx, all->e.width, all->e.height,
 		"FDF bpajot");
-	all->size.center_modify = 0;
+	all->size.modify = 0;
 	tab_proj(all);
 	ft_putstr("projection OK \n");
 	display_line(all);

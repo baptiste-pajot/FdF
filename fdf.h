@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 19:10:21 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 22:00:00 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,12 +15,13 @@
 # define FDF_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <math.h>
 # include "libft/libft.h"
 # include "../minilibx_macos/mlx.h"
 
-# define WIN_HEIGHT 1200;
-# define WIN_WIDTH 2400;
+# define W_HEIGHT 1200
+# define W_WIDTH 2400
 
 typedef struct	s_env
 {
@@ -39,7 +40,7 @@ typedef struct	s_size
 	int			min_z;
 	int			center_x;
 	int			center_y;
-	int			center_modify;
+	int			modify;
 	double		scale_xy_ini;
 	double		scale_xy;
 	double		scale_z_ini;

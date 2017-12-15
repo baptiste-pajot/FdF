@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 20:48:02 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 21:42:13 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,19 +54,19 @@ void			tab_proj(t_all *all)
 	double		c2;
 	double		c3;
 
-	if (all->size.scale_xy_ini == -1)
+	if (all->size.scale_xy_ini == -1 && all->size.modify == 0)
 		all->size.scale_xy = tab_scale_xy(all);
-	else
+	else if (all->size.modify == 0)
 		all->size.scale_xy = all->size.scale_xy_ini;
-	if (all->size.scale_z_ini == -1)
+	if (all->size.scale_z_ini == -1 && all->size.modify == 0)
 		all->size.scale_z = tab_scale_z(all);
-	else
+	else if (all->size.modify == 0)
 		all->size.scale_z = all->size.scale_z_ini;
 	c1 = sqrt(2) / 2 * all->size.scale_xy;
 	c3 = 1 / sqrt(6) * all->size.scale_xy;
 	c2 = sqrt(2.0 / 3.0) * all->size.scale_z;
 	i = -1;
-	if (all->size.center_modify == 0)
+	if (all->size.modify == 0)
 	{
 		if (all->e.width >= 1000 && all->e.height >= 600)
 			all->size.center_x = (all->e.width - 300) / 2 + 300;
@@ -81,9 +81,8 @@ void			tab_proj(t_all *all)
 		{
 			all->tab[i][j][2] = all->size.center_x - c1 * (all->size.len_x -
 				all->size.len_y) / 2 + c1 * (j - i);
-			all->tab[i][j][3] = all->size.center_y + (/*(all->size.max_z -
-				all->size.min_z) * c2 */- c3 * (all->size.len_x + all->size.len_y
-				- 2)) / 2 - c2 * all->tab[i][j][0] + c3 * (i + j);
+			all->tab[i][j][3] = all->size.center_y - c3 * (all->size.len_x - 2 +
+				all->size.len_y) / 2 - c2 * all->tab[i][j][0] + c3 * (i + j);
 		}
 	}
 }
