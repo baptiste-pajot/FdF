@@ -6,46 +6,62 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 17:14:18 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 19:22:55 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		fill_line(int ***tab, t_size *size, t_env e, t_ij ij)
+static void		fill_line(t_all *all, int i, int j)
 {
-	t_line	line;
-
-	line.x1 = tab[ij.i][ij.j][2];
-	line.y1 = tab[ij.i][ij.j][3];
-	line.color1 = tab[ij.i][ij.j][1];
-	if (ij.j < size->len_x - 1)
+	all->line.x1 = all->tab[i][j][2];
+	all->line.y1 = all->tab[i][j][3];
+	all->line.color1 = all->tab[i][j][1];
+	if (j < all->size.len_x - 1)
 	{
-		line.x2 = tab[ij.i][ij.j + 1][2];
-		line.y2 = tab[ij.i][ij.j + 1][3];
-		line.color2 = tab[ij.i][ij.j + 1][1];
-		ft_line(e, line);
+		all->line.x2 = all->tab[i][j + 1][2];
+		all->line.y2 = all->tab[i][j + 1][3];
+		all->line.color2 = all->tab[i][j + 1][1];
+		ft_line(all->e, all->line);
 	}
-	if (ij.i < size->len_y - 1)
+	if (i < all->size.len_y - 1)
 	{
-		line.x2 = tab[ij.i + 1][ij.j][2];
-		line.y2 = tab[ij.i + 1][ij.j][3];
-		line.color2 = tab[ij.i + 1][ij.j][1];
-		ft_line(e, line);
+		all->line.x2 = all->tab[i + 1][j][2];
+		all->line.y2 = all->tab[i + 1][j][3];
+		all->line.color2 = all->tab[i + 1][j][1];
+		ft_line(all->e, all->line);
 	}
 }
 
-static void		display_line(int ***tab, t_size *size, t_env e)
+static void		display_line(t_all *all)
 {
-	t_ij	ij;
+	int		i;
+	int		j;
 
-	ij.i = -1;
-	while (++ij.i < size->len_y)
+	i = -1;
+	while (++i < all->size.len_y)
 	{
-		ij.j = -1;
-		while (++ij.j < size->len_x)
-			fill_line(tab, size, e, ij);
+		j = -1;
+		while (++j < all->size.len_x)
+			fill_line(all, i, j);
+	}
+}
+
+static void		display_black(t_all *all)
+{
+	int		i;
+
+	i = -1;
+	while (++i < all->e.width)
+	{
+		all->line.color1 = 0;
+		all->line.color2 = 0;
+		all->line.x1 = i;
+		all->line.x2 = i;
+		all->line.y1 = 0;
+		all->line.y2 = all->e.height;
+		ft_line(all->e, all->line);
 	}
 }
 
@@ -56,51 +72,44 @@ static int		keyboard_funct(int keycode, t_all *all)
 	if (keycode >= 123 && keycode <= 126)
 	{
 		if (keycode == 126)
-			all->size->center_y -= 50;
+			all->size.center_y -= 50;
 		if (keycode == 125)
-			all->size->center_y += 50;
+			all->size.center_y += 50;
 		if (keycode == 123)
-			all->size->center_x -= 50;
+			all->size.center_x -= 50;
 		if (keycode == 124)
-			all->size->center_x += 50;
-		all->size->center_modify = 1;
-		tab_proj(all->tab, all->size, all->e);
+			all->size.center_x += 50;
+		all->size.center_modify = 1;
+		tab_proj(all);
 		ft_putstr("projection OK \n");
-		display_line(all->tab, all->size, all->e);
+		display_black(all);
+		display_line(all);
+		if (all->e.width >= 1000 && all->e.height >= 600)
+			display_legend(all);
 	}
 	return (0);
 }
 
-int				display(int ***tab, t_size *size, char *name)
+int				display(t_all *all, char *name)
 {
-	t_all	all;
-	t_env	e;
-
 	if ((ft_strrchr(name, '/')) != NULL)
-		e.name = ft_strrchr(name, '/') + 1;
+		all->e.name = ft_strrchr(name, '/') + 1;
 	else
-		e.name = name;
-	if (ft_strlen(e.name) > 20)
-	{
-		e.name[17] = '.';
-		e.name[18] = '.';
-		e.name[19] = '.';
-		e.name[20] = '\0';
-	}
-	e.width = WIN_WIDTH;
-	e.height = WIN_HEIGHT;
-	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, e.width, e.height, "FDF bpajot");
-	size->center_modify = 0;
-	all.tab = tab;
-	all.e = e;
-	all.size = size;
-	tab_proj(tab, size, e);
+		all->e.name = name;
+	if (ft_strlen(all->e.name) > 20)
+		all->e.name = ft_strjoin(ft_strsub(name, 0, 17), "...");
+	all->e.width = WIN_WIDTH;
+	all->e.height = WIN_HEIGHT;
+	all->e.mlx = mlx_init();
+	all->e.win = mlx_new_window(all->e.mlx, all->e.width, all->e.height,
+		"FDF bpajot");
+	all->size.center_modify = 0;
+	tab_proj(all);
 	ft_putstr("projection OK \n");
-	display_line(tab, size, e);
-	if (e.width >= 1000 && e.height >= 600)
-		display_legend(e, size);
-	mlx_key_hook(e.win, keyboard_funct, &all);
-	mlx_loop(e.mlx);
+	display_line(all);
+	if (all->e.width >= 1000 && all->e.height >= 600)
+		display_legend(all);
+	mlx_key_hook(all->e.win, keyboard_funct, all);
+	mlx_loop(all->e.mlx);
 	return (0);
 }

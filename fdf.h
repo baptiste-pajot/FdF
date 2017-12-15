@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 14:13:39 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 19:10:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,12 +46,6 @@ typedef struct	s_size
 	double		scale_z;
 }				t_size;
 
-typedef struct	s_ij
-{
-	int			i;
-	int			j;
-}				t_ij;
-
 typedef struct	s_line
 {
 	int			x1;
@@ -64,17 +58,17 @@ typedef struct	s_line
 
 typedef struct	s_all
 {
-	t_size		*size;
+	t_size		size;
 	t_env		e;
 	int			***tab;
+	t_line		line;
 }				t_all;
 
-int				***ft_read(char *name, int ***tab, t_size *size);
-int				display(int ***tab, t_size *size, char	*name);
+int				***ft_read(char *name, t_all *all);
+int				display(t_all *all, char *name);
 int				ft_line(t_env e, t_line line);
-int				print_tab(int ***tab, t_size *size, int indice);
-void			tab_proj(int ***tab, t_size *size, t_env e);
-void			tab_proj_ini(int ***tab, t_size *size, t_env e);
-void			display_legend(t_env e, t_size *size);
+int				print_tab(t_all *all, int indice);
+void			tab_proj(t_all *all);
+void			display_legend(t_all *all);
 
 #endif
