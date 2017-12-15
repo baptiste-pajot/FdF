@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 12:04:09 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 12:19:03 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,62 +55,6 @@ static void		display_line(int ***tab, t_size *size, t_env e)
 		while (++ij.j < size->len_x)
 			fill_line(tab, size, e, ij);
 	}
-}
-
-static void		display_legend(t_env e, t_size *size)
-{
-	t_line	line;
-	int		sep_width;
-
-	sep_width = 300;
-	line.x1 = sep_width;
-	line.y1 = 0;
-	line.color1 = 0xFFFFFF;
-	line.x2 = line.x1;
-	line.y2 = e.height - 1;
-	line.color2 = line.color1;
-	ft_line(e, line);
-	line.x1 = 0;
-	line.y1 = e.height / 2;
-	line.x2 = sep_width;
-	line.y2 = line.y1;
-	ft_line(e, line);
-	mlx_string_put(e.mlx, e.win, sep_width/2 -20, 20, line.color1,
-		"FILE");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 2 * e.height / 20,
-		line.color1, "name :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 60, 2* e.height / 20,
-		line.color1, e.name);
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 3 * e.height / 20,
-		line.color1, "len_x :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 3 * e.height / 20,
-		line.color1, ft_itoa(size->len_x));
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 4 * e.height / 20,
-		line.color1, "len_y :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 4 * e.height / 20,
-		line.color1, ft_itoa(size->len_y));
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 5 * e.height / 20,
-		line.color1, "max_z :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 5 * e.height / 20,
-		line.color1, ft_itoa(size->max_z));
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 6 * e.height / 20,
-		line.color1, "min_z :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 6 * e.height / 20,
-		line.color1, ft_itoa(size->min_z));
-	mlx_string_put(e.mlx, e.win, sep_width/2 -20, e.height / 2 + 20, 
-		line.color1, "VIEW");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 12 * e.height / 20,
-		line.color1, "projection :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 , 12* e.height / 20,
-		line.color1, "iso");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 13 * e.height / 20,
-		line.color1, "scale_xy :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 , 13 * e.height / 20,
-		line.color1, ft_itoa(size->scale_xy));
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 14 * e.height / 20,
-		line.color1, "scale_z :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 , 14 * e.height / 20,
-		line.color1, ft_itoa(size->scale_z));
 }
 
 int				display(int ***tab, t_size *size, char *name)

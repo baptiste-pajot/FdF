@@ -6,17 +6,21 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/14 18:04:13 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 12:18:45 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
 # include <stdlib.h>
 # include <math.h>
 # include "libft/libft.h"
 # include "../minilibx_macos/mlx.h"
+
+# define WIN_HEIGHT = 1200;
+# define WIN_WIDTH = 2400;
 
 typedef struct	s_env
 {
@@ -33,6 +37,8 @@ typedef struct	s_size
 	int			len_y;
 	int			max_z;
 	int			min_z;
+	int			center_x;
+	int			center_y;
 	double		scale_xy_ini;
 	double		scale_xy;
 	double		scale_z_ini;
@@ -61,5 +67,6 @@ int				ft_line(t_env e, t_line line);
 int				print_tab(int ***tab, t_size *size, int indice);
 void			tab_proj(int ***tab, t_size *size, t_env e);
 void			tab_proj_ini(int ***tab, t_size *size, t_env e);
+void			display_legend(t_env e, t_size *size);
 
 #endif
