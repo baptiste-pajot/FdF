@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   display.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2017/12/06 14:30:27 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/14 18:25:30 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2017/12/15 12:04:09 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -77,18 +77,40 @@ static void		display_legend(t_env e, t_size *size)
 	ft_line(e, line);
 	mlx_string_put(e.mlx, e.win, sep_width/2 -20, 20, line.color1,
 		"FILE");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, e.height / 16,
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 2 * e.height / 20,
 		line.color1, "name :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 60, e.height / 16,
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 60, 2* e.height / 20,
 		line.color1, e.name);
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 2 * e.height / 16,
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 3 * e.height / 20,
 		line.color1, "len_x :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 2 * e.height / 16,
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 3 * e.height / 20,
 		line.color1, ft_itoa(size->len_x));
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 3 * e.height / 16,
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 4 * e.height / 20,
 		line.color1, "len_y :");
-	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 3 * e.height / 16,
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 4 * e.height / 20,
 		line.color1, ft_itoa(size->len_y));
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 5 * e.height / 20,
+		line.color1, "max_z :");
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 5 * e.height / 20,
+		line.color1, ft_itoa(size->max_z));
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 6 * e.height / 20,
+		line.color1, "min_z :");
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 40, 6 * e.height / 20,
+		line.color1, ft_itoa(size->min_z));
+	mlx_string_put(e.mlx, e.win, sep_width/2 -20, e.height / 2 + 20, 
+		line.color1, "VIEW");
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 12 * e.height / 20,
+		line.color1, "projection :");
+	mlx_string_put(e.mlx, e.win, sep_width/2 , 12* e.height / 20,
+		line.color1, "iso");
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 13 * e.height / 20,
+		line.color1, "scale_xy :");
+	mlx_string_put(e.mlx, e.win, sep_width/2 , 13 * e.height / 20,
+		line.color1, ft_itoa(size->scale_xy));
+	mlx_string_put(e.mlx, e.win, sep_width/2 - 130, 14 * e.height / 20,
+		line.color1, "scale_z :");
+	mlx_string_put(e.mlx, e.win, sep_width/2 , 14 * e.height / 20,
+		line.color1, ft_itoa(size->scale_z));
 }
 
 int				display(int ***tab, t_size *size, char *name)
@@ -113,7 +135,7 @@ int				display(int ***tab, t_size *size, char *name)
 	tab_proj(tab, size, e);
 	ft_putstr("projection OK \n");
 	display_line(tab, size, e);
-	if (e.width >= 1000 && e.height >= 800)
+	if (e.width >= 1000 && e.height >= 600)
 		display_legend(e, size);
 	mlx_key_hook(e.win, my_key_funct, 0);
 	mlx_loop(e.mlx);
