@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 12:18:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 12:40:04 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 17:22:38 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,11 +74,21 @@ static void		display_view(t_env e, t_size *size, int sep_width)
 	mlx_string_put(e.mlx, e.win, sep_width / 2 - 130, 13 * e.height / 20,
 		color_txt, "scale_xy :");
 	mlx_string_put(e.mlx, e.win, sep_width / 2, 13 * e.height / 20,
-		color_txt, ft_itoa(size->scale_xy));
+		color_txt, ft_strjoin(ft_strjoin(ft_itoa(size->scale_xy), "."),
+		ft_itoa((int)(size->scale_xy * 100) % 100)));
 	mlx_string_put(e.mlx, e.win, sep_width / 2 - 130, 14 * e.height / 20,
 		color_txt, "scale_z :");
 	mlx_string_put(e.mlx, e.win, sep_width / 2, 14 * e.height / 20,
-		color_txt, ft_itoa(size->scale_z));
+		color_txt, ft_strjoin(ft_strjoin(ft_itoa(size->scale_z), "."),
+		ft_itoa((int)(size->scale_z * 100) % 100)));
+	mlx_string_put(e.mlx, e.win, sep_width / 2 - 130, 15 * e.height / 20,
+		color_txt, "center_x :");
+	mlx_string_put(e.mlx, e.win, sep_width / 2, 15 * e.height / 20,
+		color_txt, ft_itoa(size->center_x));
+	mlx_string_put(e.mlx, e.win, sep_width / 2 - 130, 16 * e.height / 20,
+		color_txt, "center_y :");
+	mlx_string_put(e.mlx, e.win, sep_width / 2, 16 * e.height / 20,
+		color_txt, ft_itoa(size->center_y));
 }
 
 void			display_legend(t_env e, t_size *size)

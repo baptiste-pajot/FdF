@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 12:18:45 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 14:13:39 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,8 +19,8 @@
 # include "libft/libft.h"
 # include "../minilibx_macos/mlx.h"
 
-# define WIN_HEIGHT = 1200;
-# define WIN_WIDTH = 2400;
+# define WIN_HEIGHT 1200;
+# define WIN_WIDTH 2400;
 
 typedef struct	s_env
 {
@@ -39,6 +39,7 @@ typedef struct	s_size
 	int			min_z;
 	int			center_x;
 	int			center_y;
+	int			center_modify;
 	double		scale_xy_ini;
 	double		scale_xy;
 	double		scale_z_ini;
@@ -60,6 +61,13 @@ typedef struct	s_line
 	int			color1;
 	int			color2;
 }				t_line;
+
+typedef struct	s_all
+{
+	t_size		*size;
+	t_env		e;
+	int			***tab;
+}				t_all;
 
 int				***ft_read(char *name, int ***tab, t_size *size);
 int				display(int ***tab, t_size *size, char	*name);

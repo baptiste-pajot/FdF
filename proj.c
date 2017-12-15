@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/13 21:43:21 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/15 14:21:40 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,18 +66,23 @@ void			tab_proj(int ***tab, t_size *size, t_env e)
 	c3 = 1 / sqrt(6) * size->scale_xy;
 	c2 = sqrt(2.0 / 3.0) * size->scale_z;
 	i = -1;
+	if (size->center_modify == 0)
+	{
+		if (e.width >= 1000 && e.height >= 600)
+			size->center_x = (e.width - 300) / 2 + 300;
+		else
+			size->center_x = e.width / 2;
+		size->center_y = e.height / 2;
+	}
 	while (++i < size->len_y)
 	{
 		j = -1;
 		while (++j < size->len_x)
 		{
-			tab[i][j][2] = e.width / 2 - c1 * (size->len_x - size->len_y)
+			tab[i][j][2] = size->center_x - c1 * (size->len_x - size->len_y)
 				/ 2 + c1 * (j - i);
-			if (e.width >= 1000)
-				tab[i][j][2] = 300 + (e.width - 300) / 2 - c1 *
-					(size->len_x - size->len_y) / 2 + c1 * (j - i);
-			tab[i][j][3] = e.height / 2 + ((size->max_z - size->min_z) * c2
-				- c3 * (size->len_x + size->len_y - 2)) / 2
+			tab[i][j][3] = size->center_y + ((size->max_z - size->min_z) * c2
+					- c3 * (size->len_x + size->len_y - 2)) / 2
 				- c2 * tab[i][j][0] + c3 * (i + j);
 		}
 	}
