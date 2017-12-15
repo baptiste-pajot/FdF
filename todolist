@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/15 11:50:45 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2017/12/15 20:53:36 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,15 +19,15 @@
 - installation librairie check compilation
 - verif fonctions autorisees
 - recuperation des couleurs dans le fichier OK
-- echelles automatiques  90% OK negatif 10-70 et 20-60 NOK 
-- point de centre du dessin 90% OK negatif 10-70 et 20-60 NOK 
+- echelles automatiques  OK
+- point de centre du dessin OK
 - parametres de l'executable 50%
 - changement echelles
 - activation couleur en fonction altitude
 - activation palette couleur desiree
 - interaction clavier/souris
 	- rotation
-	- deplacement
+	- deplacement OK 50% voir si gain de temps avec image
 	- changement perspective iso/parallelle/conique
 	- ...
 - legende HUD raccourci commandes + infos
@@ -37,4 +37,5 @@
 - grande map forum intra 42
 - tester changement taille fenetre
 - faire map plate pour verifier/regler leger decalage proj OK
-- entree echelle en atod et non en atoi math.h ?
+- entree echelle en atod et non en atoi math.h OK
+- legende avec touche action
