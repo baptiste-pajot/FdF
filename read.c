@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 18:53:36 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/18 18:17:18 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,12 +69,15 @@ static void		fill_tab_conv(t_all *all, int i, int j, char **tab_txt)
 	char	*p;
 
 	all->tab[i][j][0] = ft_atoi(tab_txt[j]);
-	if ((p = ft_strstr(tab_txt[j], ",0x")) != 0)
-		all->tab[i][j][1] = ft_atoi_base(p + 3, 16);
-	else if ((p = ft_strchr(tab_txt[j], ',')) != 0)
-		all->tab[i][j][1] = ft_atoi(p);
-	else
-		all->tab[i][j][1] = 0xFFFFFF;
+	if (all->size.color_tab == NULL)
+	{
+		if ((p = ft_strstr(tab_txt[j], ",0x")) != 0)
+			all->tab[i][j][1] = ft_atoi_base(p + 3, 16);
+		else if ((p = ft_strchr(tab_txt[j], ',')) != 0)
+			all->tab[i][j][1] = ft_atoi(p);
+		else
+			all->tab[i][j][1] = 0xFFFFFF;
+	}
 	if (all->tab[i][j][0] > all->size.max_z)
 		all->size.max_z = all->tab[i][j][0];
 	if (all->tab[i][j][0] < all->size.min_z)
@@ -105,6 +108,33 @@ static int		***fill_tab(int fd, t_all *all)
 	return (all->tab);
 }
 
+static void		fill_tab_color_palette(t_all *all)
+{
+	int		i;
+	int		j;
+	int		color_ind;
+
+	i = -1;
+	while (++i < all->size.len_y)
+	{
+		j = -1;
+		while (++j < all->size.len_x)
+		{
+			if (all->size.max_z - all->size.min_z < all->size.nb_color)
+				all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0] -
+					all->size.min_z];
+			else if ((color_ind = (all->tab[i][j][0] - all->size.min_z) *
+				all->size.nb_color / (all ->size.max_z - all->size.min_z)) !=
+				all->size.nb_color)
+				all->tab[i][j][1] = all->size.color_tab[color_ind];
+			else
+				all->tab[i][j][1] = all->size.color_tab[all->size.nb_color - 1];
+		}
+	}
+	printf("nb_color = %d\n", all->size.nb_color);
+	printf("fill_tab_color_palette OK\n");
+}
+
 int				***ft_read(char *name, t_all *all)
 {
 	int		fd;
@@ -127,6 +157,8 @@ int				***ft_read(char *name, t_all *all)
 				return (NULL);
 			}
 			close(fd);
+			if (all->size.color_tab != NULL)
+				fill_tab_color_palette(all);
 			return (all->tab);
 		}
 		else

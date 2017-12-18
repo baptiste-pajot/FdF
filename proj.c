@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/18 11:37:13 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/18 16:29:56 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ static double	tab_scale_xy(t_all *all)
 
 	width_proj = sqrt(2) / 2 * (all->size.len_y + all->size.len_x - 2);
 	printf("width_proj = %lf\n", width_proj);
-	if (all->e.width >= 1000)
+	if (all->e.width >= 1000 && all->e.height >= 600)
 		scale_xy = (all->e.width - all->e.sep_width) / width_proj * 0.5;
 	else
 		scale_xy = all->e.width / width_proj * 0.5;

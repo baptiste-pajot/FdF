@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/18 15:39:30 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/18 17:32:32 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,6 +48,8 @@ typedef struct	s_size
 	double		scale_xy;
 	double		scale_z_ini;
 	double		scale_z;
+	int			nb_color;
+	int			*color_tab;
 }				t_size;
 
 typedef struct	s_line
@@ -75,5 +77,6 @@ int				print_tab(t_all *all, int indice);
 void			tab_proj(t_all *all);
 void			display_legend(t_all *all);
 void			image_black(t_all *all);
+int				*color_palette(int argc, char *argv[], t_all *all);
 
 #endif

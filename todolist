@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/18 15:58:27 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2017/12/18 16:30:01 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -22,7 +22,7 @@
 - echelles automatiques  OK 95% NOK carte lyon
 - point de centre du dessin OK
 - parametres de l'executable 50%
-- changement echelles
+- changement echelles OK
 - activation couleur en fonction altitude
 - activation palette couleur desiree
 - interaction clavier/souris
