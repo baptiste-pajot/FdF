@@ -6,20 +6,20 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/15 22:05:20 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2017/12/18 15:58:27 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-- utilisation image minilibx
+- utilisation image minilibx 50% ok pour black 
 - norme
-- malloc/free
+- malloc/free et image destroy
 - erreur perror strerror
 - verif Makefile
 - installation librairie check compilation
 - verif fonctions autorisees
 - recuperation des couleurs dans le fichier OK
-- echelles automatiques  OK
+- echelles automatiques  OK 95% NOK carte lyon
 - point de centre du dessin OK
 - parametres de l'executable 50%
 - changement echelles
@@ -31,7 +31,7 @@
 	- zoom OK 50% voir si gain de temps avec image
 	- changement perspective iso/parallelle/conique
 	- ...
-- legende HUD raccourci commandes + infos OK 50% recouvrement NOK 
+- legende HUD raccourci commandes + infos OK
 reimprimer fondnoir apres display carte
 - gestion faces cachees
 - repere x y z dans un coin
