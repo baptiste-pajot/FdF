@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/18 16:30:01 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2017/12/19 09:09:54 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -31,7 +31,7 @@
 	- zoom OK 50% voir si gain de temps avec image
 	- changement perspective iso/parallelle/conique
 	- ...
-- legende HUD raccourci commandes + infos OK
+- legende HUD raccourci commandes + infos 90% OK reste echap/Q + commade a venir
 reimprimer fondnoir apres display carte
 - gestion faces cachees
 - repere x y z dans un coin

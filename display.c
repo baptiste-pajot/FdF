@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/18 15:50:41 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/19 09:31:42 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -92,9 +92,11 @@ static int		keyboard_funct(int keycode, t_all *all)
 				all->e.image_black_back, 0, 0);
 		display_line(all);
 		if (all->e.width >= 1000 && all->e.height >= 600)
+		{
 			mlx_put_image_to_window(all->e.mlx, all->e.win,
 				all->e.image_black_legend, 0, 0);
 			display_legend(all);
+		}
 	}
 	return (0);
 }
@@ -127,7 +129,11 @@ int				display(t_all *all, char *name)
 	ft_putstr("projection OK \n");
 	display_line(all);
 	if (all->e.width >= 1000 && all->e.height >= 600)
+	{
+		mlx_put_image_to_window(all->e.mlx, all->e.win,
+				all->e.image_black_legend, 0, 0);
 		display_legend(all);
+	}
 	mlx_key_hook(all->e.win, keyboard_funct, all);
 	mlx_loop(all->e.mlx);
 	return (0);

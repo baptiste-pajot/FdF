@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/12 17:30:49 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/15 18:53:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/19 09:29:03 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,8 +40,9 @@ static int		ft_line2(t_env e, t_line line)
 
 	if (line.x1 > line.x2)
 	{
-		ft_swap(&line.x1, &line.x2);
 		ft_swap(&line.y1, &line.y2);
+		ft_swap(&line.x1, &line.x2);
+		ft_swap(&line.color1, &line.color2);
 	}
 	if (line.y1 != line.y2)
 	{
@@ -69,6 +70,7 @@ static int		ft_line1(t_env e, t_line line)
 	{
 		ft_swap(&line.y1, &line.y2);
 		ft_swap(&line.x1, &line.x2);
+		ft_swap(&line.color1, &line.color2);
 	}
 	if (line.x1 != line.x2)
 	{

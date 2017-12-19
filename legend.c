@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 12:18:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/18 11:23:34 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/19 09:36:07 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -108,6 +108,8 @@ static void		display_com(t_env e, int color_txt)
 		color_txt, "3(#) / 4($) : zoom xy -/+");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 28 * e.height / 30,
 		color_txt, "5(%) / 6(^) : zoom z  -/+");
+	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 29 * e.height / 30,
+		color_txt, "Esc or Q : Close Window");
 }
 
 void			display_legend(t_all *all)

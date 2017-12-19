@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/18 16:30:10 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/18 17:34:32 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/19 09:18:59 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,7 @@ int			*color_palette(int argc, char *argv[], t_all *all)
 		while (++i < argc)
 		{
 			if ((p = ft_strstr(argv[i], "0x")) != NULL)
-				all->size.color_tab[i - 4] = ft_atoi_base(p + 3, 16);
+				all->size.color_tab[i - 4] = ft_atoi_base(p + 2, 16);
 			else
 				all->size.color_tab[i - 4] = ft_atoi(argv[i]);
 		}
