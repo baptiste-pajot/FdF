@@ -6,13 +6,13 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/18 11:12:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/18 15:50:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/19 20:21:27 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/*
 static void		*new_image_black_back(t_all *all)
 {
 	void	*image;
@@ -23,6 +23,15 @@ static void		*new_image_black_back(t_all *all)
 			all->e.height);
 	else
 		image = mlx_new_image(all->e.mlx, all->e.width, all->e.height);
+	return (image);
+}
+*/
+static void		*new_image(t_all *all)
+{
+	void	*image;
+
+	image = NULL;
+	image = mlx_new_image(all->e.mlx, all->e.width, all->e.height);
 	return (image);
 }
 
@@ -36,19 +45,19 @@ static void		*new_image_black_legend(t_all *all)
 	return (image);
 }
 
-/*static char		*image_string(void *image)
-{
-	int		bpp;
-	int		size_line;
-	int		endian;
-	char	*image_string;
-
-	image_string = mlx_get_data_addr(image, &bpp, &size_line, &endian);
-	return (image_string);
-}
-*/
 void		image_black(t_all *all)
 {
-	all->e.image_black_back = new_image_black_back(all);
+//	all->e.image_black_back = new_image_black_back(all);
 	all->e.image_black_legend = new_image_black_legend(all);
+	all->e.image = new_image(all);
+	all->e.char_legend = mlx_get_data_addr(all->e.image_black_legend,
+		&(all->e.bpp), &(all->e.size_line), &(all->e.endian));
+	printf("bpp = %d\n", all->e.bpp);
+	printf("size_line = %d\n", all->e.size_line);
+	printf("endian = %d\n", all->e.endian);
+	all->e.char_image = mlx_get_data_addr(all->e.image, &(all->e.bpp),
+		&(all->e.size_line), &(all->e.endian));
+	printf("bpp = %d\n", all->e.bpp);
+	printf("size_line = %d\n", all->e.size_line);
+	printf("endian = %d\n", all->e.endian);
 }

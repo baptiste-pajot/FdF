@@ -6,34 +6,32 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 12:18:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/19 09:36:07 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/19 20:56:27 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		display_seprarator(t_env e, int color)
+static void		display_seprarator(t_all *all, int color)
 {
-	t_line	line_separator;
-
-	line_separator.x1 = e.sep_width;
-	line_separator.y1 = 0;
-	line_separator.color1 = color;
-	line_separator.x2 = line_separator.x1;
-	line_separator.y2 = e.height - 1;
-	line_separator.color2 = line_separator.color1;
-	ft_line(e, line_separator);
-	line_separator.x1 = 0;
-	line_separator.y1 = e.height / 3;
-	line_separator.x2 = e.sep_width;
-	line_separator.y2 = line_separator.y1;
-	ft_line(e, line_separator);
-	line_separator.x1 = 0;
-	line_separator.y1 = 2 * e.height / 3;
-	line_separator.x2 = e.sep_width;
-	line_separator.y2 = line_separator.y1;
-	ft_line(e, line_separator);
+	all->line.x1 = all->e.sep_width - 1;
+	all->line.y1 = 0;
+	all->line.color1 = color;
+	all->line.x2 = all->line.x1;
+	all->line.y2 = all->e.height - 1;
+	all->line.color2 = all->line.color1;
+	ft_line(all, 1);
+	all->line.x1 = 0;
+	all->line.y1 = all->e.height / 3;
+	all->line.x2 = all->e.sep_width - 1;
+	all->line.y2 = all->line.y1;
+	ft_line(all, 1);
+	all->line.x1 = 0;
+	all->line.y1 = 2 * all->e.height / 3;
+	all->line.x2 = all->e.sep_width - 1;
+	all->line.y2 = all->line.y1;
+	ft_line(all, 1);
 }
 
 static void		display_file(t_env e, t_size size, int color_txt)
@@ -112,9 +110,14 @@ static void		display_com(t_env e, int color_txt)
 		color_txt, "Esc or Q : Close Window");
 }
 
+void			display_legend_line(t_all *all)
+{
+	display_seprarator(all, 0xFFFFFF);
+}
+
 void			display_legend(t_all *all)
 {
-	display_seprarator(all->e, 0xFFFFFF);
+	display_seprarator(all, 0xFFFFFF);
 	display_file(all->e, all->size, 0xFFFFFF);
 	display_view(all->e, all->size, 0xFFFFFF);
 	display_com(all->e, 0xFFFFFF);

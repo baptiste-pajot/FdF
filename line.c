@@ -6,106 +6,133 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/12 17:30:49 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/19 09:29:03 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/19 21:00:08 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		ft_color(t_line line, int min, int max, int x)
+static void		mlx_pixel_image(t_all *all, int x, int y, int xory, int imorleg)
 {
-	int		red;
-	int		green;
-	int		blue;
+	int		min;
+	int		max;
+	int		cur;
 
-	if (line.color1 == line.color2 || min == max)
-		return (line.color1);
+	if (xory == 0)
+	{
+		min = all->line.x1;
+		max = all->line.x2;
+		cur = x;
+	}
 	else
 	{
-		red = line.color1 % 16777216 / 65536 + 100 * (x - min) / (max - min) *
-			(line.color2 % 16777216 / 65536 - line.color1 % 16777216 / 65536)
-			/ 100;
-		green = line.color1 % 65536 / 256 + 100 * (x - min) / (max - min) *
-			(line.color2 % 65536 / 256 - line.color1 % 65536 / 256) / 100;
-		blue = line.color1 % 256 + 100 * (x - min) / (max - min) *
-			(line.color2 % 256 - line.color1 % 256) / 100;
-		return (red * 65536 + green * 256 + blue);
+		min = all->line.y1;
+		max = all->line.y2;
+		cur = y;
+	}
+	if (imorleg == 0)
+	{
+		if ( x >= 0 && x < all->e.width && y >= 0 && y < all->e.height)
+		{
+			all->e.char_image[y * all->e.size_line + x * 4] = all->line.color1 % 256
+				+ 100 * (cur - min) / (max - min) * (all->line.color2 % 256 -
+				all->line.color1 % 256) / 100;
+			all->e.char_image[y * all->e.size_line + x * 4 + 1] = all->line.color1 %
+				65536 / 256 + 100 * (cur - min) / (max - min) * (all->line.color2 %
+				65536 / 256 - all->line.color1 % 65536 / 256) / 100;
+			all->e.char_image[y * all->e.size_line + x * 4 + 2] = all->line.color1 %
+				16777216 / 65536 + 100 * (cur - min) * (all->line.color2 % 16777216
+				/ 65536 - all->line.color1 % 16777216 / 65536) / 100 /(max - min);
+		}
+	}
+	else
+	{
+		if ( x >= 0 && x < all->e.sep_width && y >= 0 && y < all->e.height)
+		{
+			all->e.char_legend[(y * all->e.sep_width + x) * 4] = all->line.color1 % 256
+				+ 100 * (cur - min) / (max - min) * (all->line.color2 % 256 -
+				all->line.color1 % 256) / 100;
+			all->e.char_legend[(y * all->e.sep_width + x) * 4 + 1] = all->line.color1 %
+				65536 / 256 + 100 * (cur - min) / (max - min) * (all->line.color2 %
+				65536 / 256 - all->line.color1 % 65536 / 256) / 100;
+			all->e.char_legend[(y * all->e.sep_width + x) * 4 + 2] = all->line.color1 %
+				16777216 / 65536 + 100 * (cur - min) * (all->line.color2 % 16777216
+				/ 65536 - all->line.color1 % 16777216 / 65536) / 100 /(max - min);
+		}
 	}
 }
 
-static int		ft_line2(t_env e, t_line line)
+static int		ft_line2(t_all *all, int imorleg)
 {
 	int		x;
 
-	if (line.x1 > line.x2)
+	if (all->line.x1 > all->line.x2)
 	{
-		ft_swap(&line.y1, &line.y2);
-		ft_swap(&line.x1, &line.x2);
-		ft_swap(&line.color1, &line.color2);
+		ft_swap(&(all->line.y1), &(all->line.y2));
+		ft_swap(&(all->line.x1), &(all->line.x2));
+		ft_swap(&(all->line.color1), &(all->line.color2));
 	}
-	if (line.y1 != line.y2)
+	if (all->line.y1 != all->line.y2)
 	{
-		x = line.x1 - 1;
-		while (++x <= line.x2)
-			mlx_pixel_put(e.mlx, e.win, x, line.y1 + (line.y2 - line.y1) *
-				(x - line.x1) / (line.x2 - line.x1), ft_color(line, line.x1,
-				line.x2, x));
+		x = all->line.x1 - 1;
+		while (++x <= all->line.x2)
+			mlx_pixel_image(all, x, all->line.y1 +
+				(all->line.y2 - all->line.y1) * (x - all->line.x1) /
+				(all->line.x2 - all->line.x1), 0, imorleg);
 	}
 	else
 	{
-		x = line.x1 - 1;
-		while (++x <= line.x2)
-			mlx_pixel_put(e.mlx, e.win, x, line.y1, ft_color(line, line.x1,
-				line.x2, x));
+		x = all->line.x1 - 1;
+		while (++x <= all->line.x2)
+			mlx_pixel_image(all, x, all->line.y1, 0, imorleg);
 	}
 	return (0);
 }
 
-static int		ft_line1(t_env e, t_line line)
+static int		ft_line1(t_all *all, int imorleg)
 {
 	int		y;
 
-	if (line.y1 > line.y2)
+	if (all->line.y1 > all->line.y2)
 	{
-		ft_swap(&line.y1, &line.y2);
-		ft_swap(&line.x1, &line.x2);
-		ft_swap(&line.color1, &line.color2);
+		ft_swap(&(all->line.y1), &(all->line.y2));
+		ft_swap(&(all->line.x1), &(all->line.x2));
+		ft_swap(&(all->line.color1), &(all->line.color2));
 	}
-	if (line.x1 != line.x2)
+	if (all->line.x1 != all->line.x2)
 	{
-		y = line.y1 - 1;
-		while (++y <= line.y2)
-			mlx_pixel_put(e.mlx, e.win, line.x1 + (line.x2 - line.x1) *
-				(y - line.y1) / (line.y2 - line.y1), y, ft_color(line, line.y1,
-				line.y2, y));
+		y = all->line.y1 - 1;
+		while (++y <= all->line.y2)
+			mlx_pixel_image(all, all->line.x1 + (all->line.x2
+				- all->line.x1) * (y - all->line.y1) / (all->line.y2 -
+				all->line.y1), y, 1, imorleg);
 	}
 	else
 	{
-		y = line.y1 - 1;
-		while (++y <= line.y2)
-			mlx_pixel_put(e.mlx, e.win, line.x1, y, ft_color(line, line.y1,
-				line.y2, y));
+		y = all->line.y1 - 1;
+		while (++y <= all->line.y2)
+			mlx_pixel_image(all, all->line.x1, y, 1, imorleg);
 	}
 	return (0);
 }
 
-int				ft_line(t_env e, t_line line)
+int				ft_line(t_all *all, int imorleg)
 {
 	int		delta_x;
 	int		delta_y;
 
-	if ((line.x2 - line.x1) >= 0)
-		delta_x = line.x2 - line.x1;
+	if ((all->line.x2 - all->line.x1) >= 0)
+		delta_x = all->line.x2 - all->line.x1;
 	else
-		delta_x = line.x1 - line.x2;
-	if ((line.y2 - line.y1) >= 0)
-		delta_y = line.y2 - line.y1;
+		delta_x = all->line.x1 - all->line.x2;
+	if ((all->line.y2 - all->line.y1) >= 0)
+		delta_y = all->line.y2 - all->line.y1;
 	else
-		delta_y = line.y1 - line.y2;
+		delta_y = all->line.y1 - all->line.y2;
 	if (delta_x <= delta_y)
-		ft_line1(e, line);
+		ft_line1(all, imorleg);
 	else
-		ft_line2(e, line);
+		ft_line2(all, imorleg);
 	return (0);
 }

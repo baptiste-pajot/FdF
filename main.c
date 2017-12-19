@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:19 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/18 17:29:35 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/19 19:46:59 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ int		main(int argc, char *argv[])
 			all.size.color_tab = color_palette(argc, argv, &all);
 		if ((all.tab = ft_read(argv[1], &all)) == NULL)
 			return (-1);
-//		print_tab(tab, &size, 0);
+//		print_tab(&all, 0);
 		ret = display(&all, argv[1]);
 		return (ret);
 	}
