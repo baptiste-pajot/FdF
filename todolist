@@ -6,12 +6,12 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/19 09:09:54 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2017/12/19 21:29:06 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-- utilisation image minilibx 50% ok pour black 
+- utilisation image minilibx 90% ok nettoyer et tester
 - norme
 - malloc/free et image destroy
 - erreur perror strerror
@@ -21,18 +21,18 @@
 - recuperation des couleurs dans le fichier OK
 - echelles automatiques  OK 95% NOK carte lyon
 - point de centre du dessin OK
-- parametres de l'executable 50%
+- parametres de l'executable 90%
 - changement echelles OK
-- activation couleur en fonction altitude
-- activation palette couleur desiree
+- activation couleur en fonction altitudie 80% voir etages identiques
+- activation palette couleur desiree OK
 - interaction clavier/souris
 	- rotation
-	- deplacement OK 50% voir si gain de temps avec image
-	- zoom OK 50% voir si gain de temps avec image
+	- deplacement OK 100% gain de temps avec image
+	- zoom OK 100% gain de temps avec image
 	- changement perspective iso/parallelle/conique
 	- ...
-- legende HUD raccourci commandes + infos 90% OK reste echap/Q + commade a venir
-reimprimer fondnoir apres display carte
+- legende HUD raccourci commandes + infos 90% OK + commade a venir
+- reimprimer fondnoir apres display carte OK
 - gestion faces cachees
 - repere x y z dans un coin
 - echelle graduee
@@ -40,3 +40,4 @@ reimprimer fondnoir apres display carte
 - tester changement taille fenetre
 - faire map plate pour verifier/regler leger decalage proj OK
 - entree echelle en atod et non en atoi math.h OK
+- bug floating exception lors du dezoom
