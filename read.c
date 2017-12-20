@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/20 18:36:50 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/20 19:28:24 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -133,7 +133,7 @@ static void		fill_tab_color_palette(t_all *all)
 				all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0] -
 					all->size.min_z];
 			else if ((color_ind = (all->tab[i][j][0] - all->size.min_z) *
-				all->size.nb_color / (all ->size.max_z - all->size.min_z)) !=
+				all->size.nb_color / (all->size.max_z - all->size.min_z)) !=
 				all->size.nb_color)
 				all->tab[i][j][1] = all->size.color_tab[color_ind];
 			else

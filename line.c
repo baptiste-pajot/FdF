@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/12 17:30:49 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/20 17:13:33 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/20 19:27:52 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,32 +33,36 @@ static void		mlx_pixel_image(t_all *all, int x, int y, int xory, int imorleg)
 	}
 	if (imorleg == 0)
 	{
-		if ( x >= 0 && x < all->e.width && y >= 0 && y < all->e.height)
+		if (x >= 0 && x < all->e.width && y >= 0 && y < all->e.height)
 		{
-			all->e.char_image[y * all->e.size_line + x * 4] = all->line.color1 % 256
-				+ 100 * (cur - min) / (max - min) * (all->line.color2 % 256 -
-				all->line.color1 % 256) / 100;
-			all->e.char_image[y * all->e.size_line + x * 4 + 1] = all->line.color1 %
-				65536 / 256 + 100 * (cur - min) / (max - min) * (all->line.color2 %
-				65536 / 256 - all->line.color1 % 65536 / 256) / 100;
-			all->e.char_image[y * all->e.size_line + x * 4 + 2] = all->line.color1 %
-				16777216 / 65536 + 100 * (cur - min) * (all->line.color2 % 16777216
-				/ 65536 - all->line.color1 % 16777216 / 65536) / 100 /(max - min);
+			all->e.char_image[y * all->e.size_line + x * 4] = all->line.color1
+				% 256 + 100 * (cur - min) / (max - min) * (all->line.color2 %
+				256 - all->line.color1 % 256) / 100;
+			all->e.char_image[y * all->e.size_line + x * 4 + 1] =
+				all->line.color1 % 65536 / 256 + 100 * (cur - min) / (max - min)
+				* (all->line.color2 % 65536 / 256 - all->line.color1 % 65536 /
+				256) / 100;
+			all->e.char_image[y * all->e.size_line + x * 4 + 2] =
+				all->line.color1 % 16777216 / 65536 + 100 * (cur - min) *
+				(all->line.color2 % 16777216 / 65536 - all->line.color1 %
+				16777216 / 65536) / 100 / (max - min);
 		}
 	}
 	else
 	{
-		if ( x >= 0 && x < all->e.sep_width && y >= 0 && y < all->e.height)
+		if (x >= 0 && x < all->e.sep_width && y >= 0 && y < all->e.height)
 		{
-			all->e.char_legend[(y * all->e.sep_width + x) * 4] = all->line.color1 % 256
-				+ 100 * (cur - min) / (max - min) * (all->line.color2 % 256 -
-				all->line.color1 % 256) / 100;
-			all->e.char_legend[(y * all->e.sep_width + x) * 4 + 1] = all->line.color1 %
-				65536 / 256 + 100 * (cur - min) / (max - min) * (all->line.color2 %
-				65536 / 256 - all->line.color1 % 65536 / 256) / 100;
-			all->e.char_legend[(y * all->e.sep_width + x) * 4 + 2] = all->line.color1 %
-				16777216 / 65536 + 100 * (cur - min) * (all->line.color2 % 16777216
-				/ 65536 - all->line.color1 % 16777216 / 65536) / 100 /(max - min);
+			all->e.char_legend[(y * all->e.sep_width + x) * 4] =
+				all->line.color1 % 256 + 100 * (cur - min) / (max - min) *
+				(all->line.color2 % 256 - all->line.color1 % 256) / 100;
+			all->e.char_legend[(y * all->e.sep_width + x) * 4 + 1] =
+				all->line.color1 % 65536 / 256 + 100 * (cur - min) / (max - min)
+				* (all->line.color2 % 65536 / 256 - all->line.color1 % 65536 /
+				256) / 100;
+			all->e.char_legend[(y * all->e.sep_width + x) * 4 + 2] =
+				all->line.color1 % 16777216 / 65536 + 100 * (cur - min) *
+				(all->line.color2 % 16777216 / 65536 - all->line.color1 %
+				16777216 / 65536) / 100 / (max - min);
 		}
 	}
 }

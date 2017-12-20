@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/19 20:55:26 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/20 19:23:19 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,6 @@ typedef struct	s_env
 	int			height;
 	int			sep_width;
 	char		*name;
-//	void		*image_black_back;
 	void		*image_black_legend;
 	void		*image;
 	char		*char_image;
