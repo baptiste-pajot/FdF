@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/20 18:06:48 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2017/12/20 19:03:29 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -41,3 +41,4 @@
 - faire map plate pour verifier/regler leger decalage proj OK
 - entree echelle en atod et non en atoi math.h OK
 - bug floating exception lors du dezoom OK division par zero supprimer
+- /map_fdf/tmap... a faire tous fait jusqu'a map12 compris pour le moment
