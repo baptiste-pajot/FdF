@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:19 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/19 19:46:59 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/20 17:16:52 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@ int		main(int argc, char *argv[])
 	int		ret;
 
 	all.tab = NULL;
-	if (argc > 1 && argc < 15)
+	if (argc > 1 && argc < 30)
 	{
 		all.size.len_x = -1;
 		all.size.len_y = -1;
@@ -48,6 +48,8 @@ int		main(int argc, char *argv[])
 		ft_putendl("if xyscale = -1 => xyscale auto ");
 		ft_putendl("if yscale = -1 => zscale auto ");
 		ft_putendl("if color0 = -1 => color auto, else 10 max colors");
+		ft_putendl("if color0 = 0 => color auto for geographic map");
+		ft_putendl("(blue if z <= 0  and other color for z > 0)");
 		return (-1);
 	}
 }

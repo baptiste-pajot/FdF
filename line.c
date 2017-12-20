@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/12 17:30:49 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/19 21:00:08 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/20 17:13:33 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -73,7 +73,7 @@ static int		ft_line2(t_all *all, int imorleg)
 		ft_swap(&(all->line.x1), &(all->line.x2));
 		ft_swap(&(all->line.color1), &(all->line.color2));
 	}
-	if (all->line.y1 != all->line.y2)
+	if (all->line.y1 != all->line.y2 && all->line.x1 != all->line.x2)
 	{
 		x = all->line.x1 - 1;
 		while (++x <= all->line.x2)
@@ -81,7 +81,7 @@ static int		ft_line2(t_all *all, int imorleg)
 				(all->line.y2 - all->line.y1) * (x - all->line.x1) /
 				(all->line.x2 - all->line.x1), 0, imorleg);
 	}
-	else
+	else if (all->line.x1 != all->line.x2)
 	{
 		x = all->line.x1 - 1;
 		while (++x <= all->line.x2)
@@ -100,7 +100,7 @@ static int		ft_line1(t_all *all, int imorleg)
 		ft_swap(&(all->line.x1), &(all->line.x2));
 		ft_swap(&(all->line.color1), &(all->line.color2));
 	}
-	if (all->line.x1 != all->line.x2)
+	if (all->line.x1 != all->line.x2 && all->line.y1 != all->line.y2)
 	{
 		y = all->line.y1 - 1;
 		while (++y <= all->line.y2)
@@ -108,7 +108,7 @@ static int		ft_line1(t_all *all, int imorleg)
 				- all->line.x1) * (y - all->line.y1) / (all->line.y2 -
 				all->line.y1), y, 1, imorleg);
 	}
-	else
+	else if (all->line.y1 != all->line.y2)
 	{
 		y = all->line.y1 - 1;
 		while (++y <= all->line.y2)

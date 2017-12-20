@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/18 18:17:18 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/20 15:59:57 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -120,7 +120,16 @@ static void		fill_tab_color_palette(t_all *all)
 		j = -1;
 		while (++j < all->size.len_x)
 		{
-			if (all->size.max_z - all->size.min_z < all->size.nb_color)
+			if (all->size.nb_color < 0 && all->tab[i][j][0] <= 0)
+				all->tab[i][j][1] = all->size.color_tab[0];
+			else if (all->size.nb_color < 0 && all->size.max_z < 7)
+				all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0]];
+			else if (all->size.nb_color < 0 && (color_ind = (all->tab[i][j][0] -
+				1) * 7 / (all ->size.max_z - 1)) != 7)
+				all->tab[i][j][1] = all->size.color_tab[color_ind + 1];
+			else if (all->size.nb_color < 0)
+				all->tab[i][j][1] = all->size.color_tab[6];
+			else if (all->size.max_z - all->size.min_z < all->size.nb_color)
 				all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0] -
 					all->size.min_z];
 			else if ((color_ind = (all->tab[i][j][0] - all->size.min_z) *

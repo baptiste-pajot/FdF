@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/19 20:55:56 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/20 17:06:08 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,7 +83,7 @@ static int		keyboard_funct(int keycode, t_all *all)
 			all->size.scale_z *= 1.2;
 		all->size.modify = 1;
 		tab_proj(all);
-		ft_putstr("projection OK \n");
+		ft_putstr("projection OK\n");
 //		if (all->e.width >= 1000 && all->e.height >= 600)
 //			mlx_put_image_to_window(all->e.mlx, all->e.win,
 //				all->e.image_black_back, all->e.sep_width, 0);
@@ -91,14 +91,16 @@ static int		keyboard_funct(int keycode, t_all *all)
 //			mlx_put_image_to_window(all->e.mlx, all->e.win,
 //				all->e.image_black_back, 0, 0);
 		ft_bzero(all->e.char_image, all->e.size_line * all->e.height - 1);
-		ft_putstr("clear OK \n");
+		ft_putstr("clear OK\n");
 		display_line(all);
 		mlx_put_image_to_window(all->e.mlx, all->e.win, all->e.image, 0, 0);
+		ft_putstr("display OK\n");
 		if (all->e.width >= 1000 && all->e.height >= 600)
 		{
 			mlx_put_image_to_window(all->e.mlx, all->e.win,
 				all->e.image_black_legend, 0, 0);
 			display_legend(all);
+		ft_putstr("legend OK\n");
 		}
 	}
 	return (0);
@@ -130,15 +132,18 @@ int				display(t_all *all, char *name)
 	all->size.modify = 0;
 	tab_proj(all);
 	ft_putstr("projection OK\n");
+//	print_tab(all, 2);
+//	print_tab(all, 3);
 	display_line(all);
 	mlx_put_image_to_window(all->e.mlx, all->e.win, all->e.image, 0, 0);
+	ft_putstr("display OK\n");
 	if (all->e.width >= 1000 && all->e.height >= 600)
 	{
-	ft_putstr("projection OK1\n");
 		display_legend_line(all);
 		mlx_put_image_to_window(all->e.mlx, all->e.win,
 				all->e.image_black_legend, 0, 0);
 		display_legend(all);
+		ft_putstr("legend OK\n");
 	}
 	mlx_key_hook(all->e.win, keyboard_funct, all);
 	mlx_loop(all->e.mlx);
