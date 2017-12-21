@@ -1,27 +1,25 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bpajot <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/14 08:37:39 by bpajot            #+#    #+#             */
-/*   Updated: 2017/11/16 17:04:40 by bpajot           ###   ########.fr       */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ft_itoa.c                                        .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2017/12/21 14:26:21 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2017/12/21 14:26:53 by bpajot      ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static size_t	ft_len_itoa(int n)
 {
-	int		neg;
 	size_t	len;
 
 	len = 0;
-	neg = 1;
 	if (n < 0)
 	{
-		neg = -1;
 		n = -n;
 		len++;
 	}
@@ -63,12 +61,18 @@ char			*ft_itoa(int n)
 	size_t	i;
 	char	*p;
 
+	if (n == -2147483648)
+	{
+		p = ft_strnew(11);
+		if (p == NULL)
+			return (NULL);
+		ft_strcpy(p, "-2147483648");
+		return (p);
+	}
 	i = ft_len_itoa(n) - 1;
 	p = ft_strnew(i + 1);
 	if (p == NULL)
 		return (NULL);
-	if (n == -2147483648)
-		ft_strcpy(p, "-2147483648");
 	else if (n == 0)
 		ft_strcpy(p, "0");
 	else
