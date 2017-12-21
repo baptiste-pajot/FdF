@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/18 16:30:10 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/20 16:00:26 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/21 16:03:44 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ int			*color_palette(int argc, char *argv[], t_all *all)
 
 	all->size.nb_color = 0;
 	i = 3;
-	if (ft_atoi(argv[4]) <= 0)
+	if (ft_atoi(argv[4]) <= 0 && ft_strstr(argv[4], "0x") == NULL)
 	{
 		all->size.color_tab = (int*)ft_memalloc(sizeof(*(all->size.color_tab))
 			* 7);

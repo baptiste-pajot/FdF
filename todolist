@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/20 19:03:29 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2017/12/21 15:51:55 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -36,9 +36,10 @@
 - gestion faces cachees imprimer noir sur rectangle en dessous jusqu'au bas de fenetre
 - repere x y z dans un coin
 - echelle graduee
-- grande map forum intra 42 en cours lent pour creation tableau mais OK voir avec free 38
+- grande map forum intra 42 en cours lent pour creation tableau mais OK voir avec free
 - tester changement taille fenetre
 - faire map plate pour verifier/regler leger decalage proj OK
 - entree echelle en atod et non en atoi math.h OK
 - bug floating exception lors du dezoom OK division par zero supprimer
 - /map_fdf/tmap... a faire tous fait jusqu'a map12 compris pour le moment
+- zoom pas centre sur le milieu de la fenetre
