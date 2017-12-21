@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/18 16:29:56 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2017/12/21 16:54:37 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,7 +65,6 @@ void			tab_proj(t_all *all)
 	c1 = sqrt(2) / 2 * all->size.scale_xy;
 	c3 = 1 / sqrt(6) * all->size.scale_xy;
 	c2 = sqrt(2.0 / 3.0) * all->size.scale_z;
-	i = -1;
 	if (all->size.modify == 0)
 	{
 		if (all->e.width >= 1000 && all->e.height >= 600)
@@ -75,6 +74,7 @@ void			tab_proj(t_all *all)
 			all->size.center_x = all->e.width / 2;
 		all->size.center_y = all->e.height / 2;
 	}
+	i = -1;
 	while (++i < all->size.len_y)
 	{
 		j = -1;
