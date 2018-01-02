@@ -6,40 +6,50 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/21 15:51:55 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/02 13:18:18 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-- utilisation image minilibx 90% ok nettoyer et tester
+
+reste a faire :
+
 - norme
 - malloc/free et image destroy
 - erreur perror strerror
 - verif Makefile
 - installation librairie check compilation
 - verif fonctions autorisees
-- recuperation des couleurs dans le fichier OK
+- gestion faces cachees imprimer noir sur rectangle en dessous jusqu'au bas de fenetre
+- repere x y z dans un coin
+- echelle graduee
+- zoom pas centre sur le milieu de la fenetre
+
+en cours :
+
 - echelles automatiques  OK 95% NOK carte lyon et carte avec 2 pointes
-- point de centre du dessin OK
-- parametres de l'executable 100% OK
-- changement echelles OK
+- utilisation image minilibx 90% ok nettoyer et tester
 - activation couleur en fonction altitudie 90% voir etages hauteur identiques
-- activation palette couleur desiree OK
+- grande map forum intra 42 en cours lent pour creation tableau mais OK voir avec free
+- tester changement taille fenetre OK 90% voir position legende a modifier si plus de texte dans partie 3
+- legende HUD raccourci commandes + infos 90% OK + commande a venir
+- /map_fdf/tmap... a faire tous fait jusqu'a map12 compris pour le moment
 - interaction clavier/souris
 	- rotation
 	- deplacement OK 100%
 	- zoom OK 100%
 	- changement perspective iso/parallelle/conique
 	- ...
-- legende HUD raccourci commandes + infos 90% OK + commande a venir
-- reimprimer fond noir apres display carte OK
-- gestion faces cachees imprimer noir sur rectangle en dessous jusqu'au bas de fenetre
-- repere x y z dans un coin
-- echelle graduee
-- grande map forum intra 42 en cours lent pour creation tableau mais OK voir avec free
-- tester changement taille fenetre
+
+
+fait :
+
+- recuperation des couleurs dans le fichier OK
+- point de centre du dessin OK
+- parametres de l'executable 100% OK
+- changement echelles OK
+- activation palette couleur desiree OK
 - faire map plate pour verifier/regler leger decalage proj OK
 - entree echelle en atod et non en atoi math.h OK
 - bug floating exception lors du dezoom OK division par zero supprimer
-- /map_fdf/tmap... a faire tous fait jusqu'a map12 compris pour le moment
-- zoom pas centre sur le milieu de la fenetre
+- reimprimer fond noir apres display carte OK
