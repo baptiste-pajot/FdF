@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/01/02 15:24:42 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/02 16:00:04 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -23,8 +23,6 @@ reste a faire :
 - gestion faces cachees imprimer noir sur rectangle en dessous jusqu'au bas de fenetre
 - repere x y z dans un coin
 - echelle graduee
-- zoom pas centre sur le milieu de la fenetre
-- rotation centree sur milieu map Ok ?
 - check limite int float pendant modif value ou en entree
 
 en cours :
@@ -33,11 +31,10 @@ en cours :
 - utilisation image minilibx 90% ok nettoyer et tester
 - activation couleur en fonction altitudie 90% voir etages hauteur identiques
 - grande map forum intra 42 en cours lent pour creation tableau mais OK voir avec free
-- tester changement taille fenetre OK 90% voir position legende a modifier si plus de texte dans partie 3
-- legende HUD raccourci commandes + infos 90% OK + commande a venir
+- legende HUD raccourci commandes + infos 100% OK + commande a venir
 - /map_fdf/tmap... a faire tous fait jusqu'a map12 compris pour le moment
 - interaction clavier/souris
-	- rotation OK 90% reste ordre affichage 4 cas possible
+	- rotation OK 100% OK 
 	- deplacement OK 100%
 	- zoom OK 100%
 	- changement perspective iso/parallelle/conique
@@ -46,6 +43,7 @@ en cours :
 
 fait :
 
+- tester changement taille fenetre OK 100%
 - recuperation des couleurs dans le fichier OK
 - point de centre du dessin OK
 - parametres de l'executable 100% OK

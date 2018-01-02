@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 15:18:56 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 15:55:12 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,13 +39,44 @@ static void		display_line(t_all *all)
 	int		i;
 	int		j;
 
-	i = -1;
-	while (++i < all->size.len_y)
+	if (all->size.rot_z >= -45 && all->size.rot_z < 45)
+	{
+		i = -1;
+		while (++i < all->size.len_y)
+		{
+			j = -1;
+			while (++j < all->size.len_x)
+				fill_line(all, i, j);
+		}
+	}
+	else if (all->size.rot_z >= 45 && all->size.rot_z < 135)
+	{
+		j = all->size.len_x;
+		while (--j >= 0)
+		{
+			i = -1;
+			while (++i < all->size.len_y)
+				fill_line(all, i, j);
+		}
+	}
+	else if (all->size.rot_z >= -135 && all->size.rot_z < -45)
 	{
 		j = -1;
 		while (++j < all->size.len_x)
 		{
-			fill_line(all, i, j);
+			i = all->size.len_y;
+			while (--i >= 0)
+				fill_line(all, i, j);
+		}
+	}
+	else
+	{
+		i = all->size.len_y;
+		while (--i >= 0)
+		{
+			j = all->size.len_x;
+			while (--j >= 0)
+				fill_line(all, i, j);
 		}
 	}
 }
