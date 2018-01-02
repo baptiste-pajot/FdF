@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/20 19:28:24 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 18:04:01 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -106,42 +106,6 @@ static int		***fill_tab(int fd, t_all *all)
 	printf("max_z = %d\n", all->size.max_z);
 	printf("min_z = %d\n", all->size.min_z);
 	return (all->tab);
-}
-
-static void		fill_tab_color_palette(t_all *all)
-{
-	int		i;
-	int		j;
-	int		color_ind;
-
-	i = -1;
-	while (++i < all->size.len_y)
-	{
-		j = -1;
-		while (++j < all->size.len_x)
-		{
-			if (all->size.nb_color < 0 && all->tab[i][j][0] <= 0)
-				all->tab[i][j][1] = all->size.color_tab[0];
-			else if (all->size.nb_color < 0 && all->size.max_z < 7)
-				all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0]];
-			else if (all->size.nb_color < 0 && (color_ind = (all->tab[i][j][0] -
-				1) * 6 / (all->size.max_z - 1)) != 6)
-				all->tab[i][j][1] = all->size.color_tab[color_ind + 1];
-			else if (all->size.nb_color < 0)
-				all->tab[i][j][1] = all->size.color_tab[6];
-			else if (all->size.max_z - all->size.min_z < all->size.nb_color)
-				all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0] -
-					all->size.min_z];
-			else if ((color_ind = (all->tab[i][j][0] - all->size.min_z) *
-				all->size.nb_color / (all->size.max_z - all->size.min_z)) !=
-				all->size.nb_color)
-				all->tab[i][j][1] = all->size.color_tab[color_ind];
-			else
-				all->tab[i][j][1] = all->size.color_tab[all->size.nb_color - 1];
-		}
-	}
-	printf("nb_color = %d\n", all->size.nb_color);
-	printf("fill_tab_color_palette OK\n");
 }
 
 int				***ft_read(char *name, t_all *all)

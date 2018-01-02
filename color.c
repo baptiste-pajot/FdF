@@ -6,17 +6,40 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/18 16:30:10 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/21 16:03:44 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 18:10:35 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			*color_palette(int argc, char *argv[], t_all *all)
+static void		color_palette2(int argc, char *argv[], t_all *all)
+{
+	char	*p;
+	int		i;
+
+	i = 3;
+	while (++i < argc)
+	{
+		if (ft_atoi(argv[i]) >= 0)
+			all->size.nb_color++;
+	}
+	i = 3;
+	p = NULL;
+	all->size.color_tab = (int*)ft_memalloc(sizeof(*(all->size.color_tab))
+		* all->size.nb_color);
+	while (++i < argc)
+	{
+		if ((p = ft_strstr(argv[i], "0x")) != NULL)
+			all->size.color_tab[i - 4] = ft_atoi_base(p + 2, 16);
+		else
+			all->size.color_tab[i - 4] = ft_atoi(argv[i]);
+	}
+}
+
+int				*color_palette(int argc, char *argv[], t_all *all)
 {
 	int		i;
-	char	*p;
 
 	all->size.nb_color = 0;
 	i = 3;
@@ -36,28 +59,44 @@ int			*color_palette(int argc, char *argv[], t_all *all)
 			all->size.nb_color = -1;
 	}
 	else
-	{
-		while (++i < argc)
-		{
-			if (ft_atoi(argv[i]) >= 0)
-				all->size.nb_color++;
-			else
-				i = argc;
-		}
-		i = 3;
-		p = NULL;
-		all->size.color_tab = (int*)ft_memalloc(sizeof(*(all->size.color_tab))
-			* all->size.nb_color);
-		while (++i < argc)
-		{
-			if ((p = ft_strstr(argv[i], "0x")) != NULL)
-				all->size.color_tab[i - 4] = ft_atoi_base(p + 2, 16);
-			else
-				all->size.color_tab[i - 4] = ft_atoi(argv[i]);
-		}
-	}
-	i = -1;
-	while (++i < all->size.nb_color)
-		printf("color%d = %d\n", i, all->size.color_tab[i]);
+		color_palette2(argc, argv, all);
 	return (all->size.color_tab);
+}
+
+static void		fill_tab_color_palette2(t_all *all, int i, int j)
+{
+	int		color_ind;
+
+	if (all->size.nb_color < 0 && all->tab[i][j][0] <= 0)
+		all->tab[i][j][1] = all->size.color_tab[0];
+	else if (all->size.nb_color < 0 && all->size.max_z < 7)
+		all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0]];
+	else if (all->size.nb_color < 0 && (color_ind = (all->tab[i][j][0] -
+		1) * 6 / (all->size.max_z - 1)) != 6)
+		all->tab[i][j][1] = all->size.color_tab[color_ind + 1];
+	else if (all->size.nb_color < 0)
+		all->tab[i][j][1] = all->size.color_tab[6];
+	else if (all->size.max_z - all->size.min_z < all->size.nb_color)
+		all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0] -
+			all->size.min_z];
+	else if ((color_ind = (all->tab[i][j][0] - all->size.min_z) *
+		all->size.nb_color / (all->size.max_z - all->size.min_z)) !=
+		all->size.nb_color)
+		all->tab[i][j][1] = all->size.color_tab[color_ind];
+	else
+		all->tab[i][j][1] = all->size.color_tab[all->size.nb_color - 1];
+}
+
+void			fill_tab_color_palette(t_all *all)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < all->size.len_y)
+	{
+		j = -1;
+		while (++j < all->size.len_x)
+			fill_tab_color_palette2(all, i, j);
+	}
 }

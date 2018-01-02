@@ -6,14 +6,14 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 12:18:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 15:33:25 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 17:37:54 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		display_seprarator(t_all *all, int color)
+void			display_seprarator(t_all *all, int color)
 {
 	all->line.x1 = all->e.sep_width - 1;
 	all->line.y1 = 0;
@@ -114,11 +114,6 @@ static void		display_com(t_env e, int color_txt)
 		color_txt, "7(&) / 8(*) : rotate z -/+");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 28 * e.height / 30,
 		color_txt, "Esc or Q : Close Window");
-}
-
-void			display_legend_line(t_all *all)
-{
-	display_seprarator(all, 0xFFFFFF);
 }
 
 void			display_legend(t_all *all)

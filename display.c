@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 15:55:12 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 17:39:36 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -132,8 +132,6 @@ static int		keyboard_funct(int keycode, t_all *all)
 		all->size.modify = 1;
 		tab_proj(all);
 		ft_putstr("projection OK\n");
-//		print_tab(all, 2);
-//		print_tab(all, 3);
 		ft_bzero(all->e.char_image, all->e.size_line * all->e.height - 1);
 		ft_putstr("clear OK\n");
 		display_line(all);
@@ -181,7 +179,7 @@ int				display(t_all *all, char *name)
 	ft_putstr("display OK\n");
 	if (all->e.width >= 1000 && all->e.height >= 600)
 	{
-		display_legend_line(all);
+		display_seprarator(all, 0xFFFFFF);
 		mlx_put_image_to_window(all->e.mlx, all->e.win,
 				all->e.image_black_legend, 0, 0);
 		display_legend(all);

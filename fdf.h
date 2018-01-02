@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 15:36:25 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 18:02:36 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,5 +85,7 @@ void			display_legend(t_all *all);
 void			display_legend_line(t_all *all);
 void			image_black(t_all *all);
 int				*color_palette(int argc, char *argv[], t_all *all);
+void			display_seprarator(t_all *all, int color);
+void			fill_tab_color_palette(t_all *all);
 
 #endif
