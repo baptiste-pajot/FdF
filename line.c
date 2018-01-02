@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/12 17:30:49 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/20 19:27:52 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 15:17:34 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,12 +70,15 @@ static void		mlx_pixel_image(t_all *all, int x, int y, int xory, int imorleg)
 static int		ft_line2(t_all *all, int imorleg)
 {
 	int		x;
+	int		reverse;
 
+	reverse = 0;
 	if (all->line.x1 > all->line.x2)
 	{
 		ft_swap(&(all->line.y1), &(all->line.y2));
 		ft_swap(&(all->line.x1), &(all->line.x2));
 		ft_swap(&(all->line.color1), &(all->line.color2));
+		reverse = 1;
 	}
 	if (all->line.y1 != all->line.y2 && all->line.x1 != all->line.x2)
 	{
@@ -91,18 +94,27 @@ static int		ft_line2(t_all *all, int imorleg)
 		while (++x <= all->line.x2)
 			mlx_pixel_image(all, x, all->line.y1, 0, imorleg);
 	}
+	if (reverse == 1)
+	{
+		ft_swap(&(all->line.y1), &(all->line.y2));
+		ft_swap(&(all->line.x1), &(all->line.x2));
+		ft_swap(&(all->line.color1), &(all->line.color2));
+	}
 	return (0);
 }
 
 static int		ft_line1(t_all *all, int imorleg)
 {
 	int		y;
+	int		reverse;
 
+	reverse = 0;
 	if (all->line.y1 > all->line.y2)
 	{
 		ft_swap(&(all->line.y1), &(all->line.y2));
 		ft_swap(&(all->line.x1), &(all->line.x2));
 		ft_swap(&(all->line.color1), &(all->line.color2));
+		reverse = 1;
 	}
 	if (all->line.x1 != all->line.x2 && all->line.y1 != all->line.y2)
 	{
@@ -117,6 +129,12 @@ static int		ft_line1(t_all *all, int imorleg)
 		y = all->line.y1 - 1;
 		while (++y <= all->line.y2)
 			mlx_pixel_image(all, all->line.x1, y, 1, imorleg);
+	}
+	if (reverse == 1)
+	{
+		ft_swap(&(all->line.y1), &(all->line.y2));
+		ft_swap(&(all->line.x1), &(all->line.x2));
+		ft_swap(&(all->line.color1), &(all->line.color2));
 	}
 	return (0);
 }

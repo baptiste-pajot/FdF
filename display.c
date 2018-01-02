@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 13:51:43 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 15:18:56 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,7 +44,9 @@ static void		display_line(t_all *all)
 	{
 		j = -1;
 		while (++j < all->size.len_x)
+		{
 			fill_line(all, i, j);
+		}
 	}
 }
 
@@ -83,12 +85,24 @@ static int		keyboard_funct(int keycode, t_all *all)
 		if (keycode == 22)
 			all->size.scale_z *= 1.2;
 		if (keycode == 26)
-			all->size.rot_z -= 10;
+		{
+			if (all->size.rot_z > -180)
+				all->size.rot_z -= 10;
+			else
+				all->size.rot_z = 170;
+		}
 		if (keycode == 28)
-			all->size.rot_z += 10;
+		{
+			if (all->size.rot_z < 180)
+				all->size.rot_z += 10;
+			else
+				all->size.rot_z = -170;
+		}
 		all->size.modify = 1;
 		tab_proj(all);
 		ft_putstr("projection OK\n");
+//		print_tab(all, 2);
+//		print_tab(all, 3);
 		ft_bzero(all->e.char_image, all->e.size_line * all->e.height - 1);
 		ft_putstr("clear OK\n");
 		display_line(all);

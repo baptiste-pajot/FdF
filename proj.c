@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 14:14:51 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 14:22:54 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -86,10 +86,13 @@ void			tab_proj(t_all *all)
 		j = -1;
 		while (++j < all->size.len_x)
 		{
-			all->tab[i][j][2] = all->size.center_x - c1 * (all->size.len_x -
-				all->size.len_y) / 2 + c1 * (cos_z * (j - i) + sin_z * (i + j));
-			all->tab[i][j][3] = all->size.center_y - c3 * (all->size.len_x - 2 +
-				all->size.len_y) / 2 - c2 * all->tab[i][j][0] + c3 * (cos_z *
+			all->tab[i][j][2] = all->size.center_x - c1 * (cos_z * 
+				(all->size.len_x - all->size.len_y) + sin_z * (all->size.len_x
+				+ all->size.len_y - 2)) / 2 + c1 * (cos_z * (j - i) +
+				sin_z * (i + j));
+			all->tab[i][j][3] = all->size.center_y - c3 * ((all->size.len_x +
+				all->size.len_y - 2) * cos_z + sin_z * (all->size.len_y -
+				all->size.len_x)) / 2 - c2 * all->tab[i][j][0] + c3 * (cos_z *
 				(i + j) + sin_z * (i - j));
 		}
 	}
