@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/20 19:23:19 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 13:42:43 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,6 +53,7 @@ typedef struct	s_size
 	double		scale_xy;
 	double		scale_z_ini;
 	double		scale_z;
+	int			rot_z;
 	int			nb_color;
 	int			*color_tab;
 }				t_size;

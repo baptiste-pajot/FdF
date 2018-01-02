@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/20 19:23:01 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 13:51:43 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,7 +53,8 @@ static int		keyboard_funct(int keycode, t_all *all)
 	printf("keycode = %d\n", keycode);
 	if (keycode == 53 || keycode == 12)
 		exit(0);
-	if ((keycode >= 123 && keycode <= 126) || (keycode >= 18 && keycode <= 23))
+	if ((keycode >= 123 && keycode <= 126) || (keycode >= 18 && keycode <= 23)
+		|| keycode == 26 || keycode == 28)
 	{
 		if (keycode == 126)
 			all->size.center_y -= 50;
@@ -81,6 +82,10 @@ static int		keyboard_funct(int keycode, t_all *all)
 			all->size.scale_z /= 1.2;
 		if (keycode == 22)
 			all->size.scale_z *= 1.2;
+		if (keycode == 26)
+			all->size.rot_z -= 10;
+		if (keycode == 28)
+			all->size.rot_z += 10;
 		all->size.modify = 1;
 		tab_proj(all);
 		ft_putstr("projection OK\n");

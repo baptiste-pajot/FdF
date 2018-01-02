@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/01/02 13:18:18 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/02 14:02:38 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -24,6 +24,7 @@ reste a faire :
 - repere x y z dans un coin
 - echelle graduee
 - zoom pas centre sur le milieu de la fenetre
+- check limite int float pendant modif value ou en entree
 
 en cours :
 

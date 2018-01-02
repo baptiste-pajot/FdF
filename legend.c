@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 12:18:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/19 20:56:27 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/02 13:48:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -86,6 +86,10 @@ static void		display_view(t_env e, t_size size, int color_txt)
 		color_txt, "center_y :");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2, 16 * e.height / 30,
 		color_txt, ft_itoa(size.center_y));
+	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 17 * e.height / 30,
+		color_txt, "rot_z :");
+	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 40, 17 * e.height / 30,
+		color_txt, ft_itoa(size.rot_z));
 }
 
 static void		display_com(t_env e, int color_txt)
