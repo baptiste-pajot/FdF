@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/01/03 16:35:48 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/03 16:41:17 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,10 +14,8 @@
 
 reste a faire :
 
-- afficher % creation tableau
 - checker include de chaque source
 - checker retour et protection de chaque fonction avec message d'erreur
-- norme
 - malloc/free et image destroy
 - erreur perror strerror
 - verif Makefile
@@ -47,6 +45,8 @@ en cours :
 
 fait :
 
+- norme OK
+- afficher etape creation si tableau grand OK
 - tester changement taille fenetre OK 100%
 - recuperation des couleurs dans le fichier OK
 - point de centre du dessin OK

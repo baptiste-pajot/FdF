@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 15:33:17 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 18:34:29 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,13 +16,17 @@
 static double		tab_scale_xy(t_all *all)
 {
 	double		width_proj;
+	double		height_proj;
 	double		scale_xy;
 
 	width_proj = sqrt(2) / 2 * (all->size.len_y + all->size.len_x - 2);
+	height_proj = 1 / sqrt(6) * (all->size.len_y + all->size.len_x - 2);
 	if (all->e.width >= 1000 && all->e.height >= 600)
-		scale_xy = (all->e.width - all->e.sep_width) / width_proj * 0.5;
+		scale_xy = (all->e.width - all->e.sep_width) / width_proj * 0.8;
 	else
-		scale_xy = all->e.width / width_proj * 0.5;
+		scale_xy = all->e.width / width_proj * 0.8;
+	if (scale_xy > all->e.height / height_proj * 0.8)
+		scale_xy = all->e.height / height_proj * 0.8;
 	return (scale_xy);
 }
 
@@ -34,10 +38,15 @@ static double		tab_scale_z(t_all *all)
 	double		c3;
 
 	c2 = sqrt(2.0 / 3.0);
-	c3 = 1 / sqrt(6);
-	height_proj = -c2 * all->size.min_z + c3 * (all->size.len_x +
-		all->size.len_y - 2) + c2 * all->size.max_z;
-	scale_z = all->e.height / height_proj * 0.5;
+	c3 = 1 / sqrt(6) * all->size.scale_xy;
+	height_proj = (all->size.max_z >= -all->size.min_z) ? all->size.max_z :
+		-all->size.min_z;
+	height_proj *= 2 * c2;
+	if (height_proj != 0)
+		scale_z = (all->e.height - c3 * (all->size.len_x + all->size.len_y - 2))
+			/ height_proj * 0.8;
+	else
+		scale_z = 1;
 	return (scale_z);
 }
 

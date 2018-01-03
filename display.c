@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 15:49:30 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 17:39:08 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -121,7 +121,8 @@ int				display(t_all *all, char *name)
 		all->e.name = name;
 	if (ft_strlen(all->e.name) > 20)
 		all->e.name = ft_strjoin(ft_strsub(all->e.name, 0, 17), "...");
-	if (W_WIDTH > 99 && W_WIDTH < 2401 && W_HEIGHT > 99 && W_HEIGHT < 1201)
+	if (W_WIDTH > 99 && W_WIDTH < 2401 && W_HEIGHT > 99 && W_HEIGHT < 1201
+			&& W_WIDTH - all->e.sep_width >= W_HEIGHT)
 	{
 		all->e.width = W_WIDTH;
 		all->e.height = W_HEIGHT;
