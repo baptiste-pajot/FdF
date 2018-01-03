@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 16:37:12 by bpajot            #+#    #+#              #
-#    Updated: 2018/01/03 13:45:07 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/03 15:20:00 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ PATH_SRCS = ./
 PATH_OBJS = ./
 PATH_INCS = ./
 FILES = main.c read.c display.c line.c print.c proj.c legend.c legend2.c \
-		image.c color.c tab.c
+		image.c color.c tab.c keyboard.c
 SRCS = $(addprefix $(PATH_SRCS), $(FILES))
 OBJS = $(addprefix $(PATH_OBJS), $(FILES:.c=.o))
 INCS = fdf.h libft/libft.h

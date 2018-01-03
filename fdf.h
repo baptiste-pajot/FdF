@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 14:09:00 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 15:19:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,5 +98,7 @@ int				*color_palette(int argc, char *argv[], t_all *all);
 void			display_seprarator(t_all *all, int color);
 void			fill_tab_color_palette(t_all *all);
 void			mlx_pixel_image(t_all *all, int x, int y, int xory);
+int				keyboard_funct(int keycode, t_all *all);
+void			display_line(t_all *all);
 
 #endif

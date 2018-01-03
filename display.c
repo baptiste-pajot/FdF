@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 15:14:22 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 15:49:30 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,34 @@ static void		fill_line(t_all *all, int i, int j)
 	}
 }
 
-static void		display_line(t_all *all)
+static void		display_line2(t_all *all)
+{
+	int		i;
+	int		j;
+
+	if (all->size.rot_z >= -135 && all->size.rot_z < -45)
+	{
+		j = -1;
+		while (++j < all->size.len_x)
+		{
+			i = all->size.len_y;
+			while (--i >= 0)
+				fill_line(all, i, j);
+		}
+	}
+	else
+	{
+		i = all->size.len_y;
+		while (--i >= 0)
+		{
+			j = all->size.len_x;
+			while (--j >= 0)
+				fill_line(all, i, j);
+		}
+	}
+}
+
+void			display_line(t_all *all)
 {
 	int		i;
 	int		j;
@@ -59,87 +86,29 @@ static void		display_line(t_all *all)
 				fill_line(all, i, j);
 		}
 	}
-	else if (all->size.rot_z >= -135 && all->size.rot_z < -45)
-	{
-		j = -1;
-		while (++j < all->size.len_x)
-		{
-			i = all->size.len_y;
-			while (--i >= 0)
-				fill_line(all, i, j);
-		}
-	}
 	else
-	{
-		i = all->size.len_y;
-		while (--i >= 0)
-		{
-			j = all->size.len_x;
-			while (--j >= 0)
-				fill_line(all, i, j);
-		}
-	}
+		display_line2(all);
 }
 
-static int		keyboard_funct(int keycode, t_all *all)
+static int		display2(t_all *all)
 {
-	if (keycode == 53 || keycode == 12)
-		exit(0);
-	if ((keycode >= 123 && keycode <= 126) || (keycode >= 18 && keycode <= 23)
-		|| keycode == 26 || keycode == 28)
+	all->e.mlx = mlx_init();
+	image_black(all);
+	all->e.win = mlx_new_window(all->e.mlx, all->e.width, all->e.height,
+		"FDF bpajot");
+	all->size.modify = 0;
+	tab_proj(all);
+	display_line(all);
+	mlx_put_image_to_window(all->e.mlx, all->e.win, all->e.image, 0, 0);
+	if (all->e.width >= 1000 && all->e.height >= 600)
 	{
-		if (keycode == 126)
-			all->size.center_y -= 50;
-		if (keycode == 125)
-			all->size.center_y += 50;
-		if (keycode == 123)
-			all->size.center_x -= 50;
-		if (keycode == 124)
-			all->size.center_x += 50;
-		if (keycode == 18)
-		{
-			all->size.scale_xy /= 1.2;
-			all->size.scale_z /= 1.2;
-		}
-		if (keycode == 19)
-		{
-			all->size.scale_xy *= 1.2;
-			all->size.scale_z *= 1.2;
-		}
-		if (keycode == 20)
-			all->size.scale_xy /= 1.2;
-		if (keycode == 21)
-			all->size.scale_xy *= 1.2;
-		if (keycode == 23)
-			all->size.scale_z /= 1.2;
-		if (keycode == 22)
-			all->size.scale_z *= 1.2;
-		if (keycode == 26)
-		{
-			if (all->size.rot_z > -180)
-				all->size.rot_z -= 10;
-			else
-				all->size.rot_z = 170;
-		}
-		if (keycode == 28)
-		{
-			if (all->size.rot_z < 180)
-				all->size.rot_z += 10;
-			else
-				all->size.rot_z = -170;
-		}
-		all->size.modify = 1;
-		tab_proj(all);
-		ft_bzero(all->e.char_image, all->e.size_line * all->e.height - 1);
-		display_line(all);
-		mlx_put_image_to_window(all->e.mlx, all->e.win, all->e.image, 0, 0);
-		if (all->e.width >= 1000 && all->e.height >= 600)
-		{
-			mlx_put_image_to_window(all->e.mlx, all->e.win,
+		display_seprarator(all, 0xFFFFFF);
+		mlx_put_image_to_window(all->e.mlx, all->e.win,
 				all->e.image_black_legend, 0, 0);
-			display_legend(all);
-		}
+		display_legend(all);
 	}
+	mlx_key_hook(all->e.win, keyboard_funct, all);
+	mlx_loop(all->e.mlx);
 	return (0);
 }
 
@@ -162,22 +131,6 @@ int				display(t_all *all, char *name)
 		all->e.width = 2400;
 		all->e.height = 1200;
 	}
-	all->e.mlx = mlx_init();
-	image_black(all);
-	all->e.win = mlx_new_window(all->e.mlx, all->e.width, all->e.height,
-		"FDF bpajot");
-	all->size.modify = 0;
-	tab_proj(all);
-	display_line(all);
-	mlx_put_image_to_window(all->e.mlx, all->e.win, all->e.image, 0, 0);
-	if (all->e.width >= 1000 && all->e.height >= 600)
-	{
-		display_seprarator(all, 0xFFFFFF);
-		mlx_put_image_to_window(all->e.mlx, all->e.win,
-				all->e.image_black_legend, 0, 0);
-		display_legend(all);
-	}
-	mlx_key_hook(all->e.win, keyboard_funct, all);
-	mlx_loop(all->e.mlx);
+	display2(all);
 	return (0);
 }

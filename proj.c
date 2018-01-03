@@ -6,13 +6,12 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 18:41:57 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 15:33:17 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 static double		tab_scale_xy(t_all *all)
 {
@@ -20,12 +19,10 @@ static double		tab_scale_xy(t_all *all)
 	double		scale_xy;
 
 	width_proj = sqrt(2) / 2 * (all->size.len_y + all->size.len_x - 2);
-	printf("width_proj = %lf\n", width_proj);
 	if (all->e.width >= 1000 && all->e.height >= 600)
 		scale_xy = (all->e.width - all->e.sep_width) / width_proj * 0.5;
 	else
 		scale_xy = all->e.width / width_proj * 0.5;
-	printf("scale_xy = %lf\n", scale_xy);
 	return (scale_xy);
 }
 
@@ -40,9 +37,7 @@ static double		tab_scale_z(t_all *all)
 	c3 = 1 / sqrt(6);
 	height_proj = -c2 * all->size.min_z + c3 * (all->size.len_x +
 		all->size.len_y - 2) + c2 * all->size.max_z;
-	printf("height_proj = %lf\n", height_proj);
 	scale_z = all->e.height / height_proj * 0.5;
-	printf("scale_z = %lf\n", scale_z);
 	return (scale_z);
 }
 

@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/01/03 14:12:40 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/03 15:41:11 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,6 +14,7 @@
 
 reste a faire :
 
+- afficher % creation tableau
 - checker include de chaque source
 - checker retour et protection de chaque fonction avec message d'erreur
 - norme
