@@ -6,12 +6,27 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/03 13:41:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 13:48:39 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 16:30:53 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/*static void		display_percent(int i, t_all *all, int step)
+{
+
+	if (all->sddize.len_y > 200 && i * 100 / all->size.len_y %  == 0 &&
+		all->size.mem == 0)
+	{
+		ft_putstr("tab creation : ");
+		ft_putnbr(i * 100 / all->size.len_y);
+		ft_putendl(" %");
+		all->size.mem = 1;
+	}
+	else if (all->size.len_y > 200 && i * 100 / all->size.len_y % 5 != 0)
+		all->size.mem = 0;
+}*/
 
 int				size_tab(int fd, t_all *all)
 {
@@ -32,6 +47,8 @@ int				size_tab(int fd, t_all *all)
 		}
 		(all->size.len_y)++;
 	}
+	if (all->size.len_y > 200)
+		ft_putendl("check size OK");
 	return (0);
 }
 
@@ -57,6 +74,8 @@ int				***make_tab(t_all *all)
 				return (NULL);
 		}
 	}
+	if (all->size.len_y > 200)
+		ft_putendl("tab creation OK");
 	return (all->tab);
 }
 
@@ -99,5 +118,7 @@ int				***fill_tab(int fd, t_all *all)
 			fill_tab_conv(all, i, j, tab_txt);
 	}
 	ft_memdel((void**)&tab_txt);
+	if (all->size.len_y > 200)
+		ft_putendl("tab fill OK");
 	return (all->tab);
 }
