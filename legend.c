@@ -6,35 +6,14 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 12:18:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 17:37:54 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 13:32:12 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void			display_seprarator(t_all *all, int color)
-{
-	all->line.x1 = all->e.sep_width - 1;
-	all->line.y1 = 0;
-	all->line.color1 = color;
-	all->line.x2 = all->line.x1;
-	all->line.y2 = all->e.height - 1;
-	all->line.color2 = all->line.color1;
-	ft_line(all, 1);
-	all->line.x1 = 0;
-	all->line.y1 = 7 * all->e.height / 30;
-	all->line.x2 = all->e.sep_width - 1;
-	all->line.y2 = all->line.y1;
-	ft_line(all, 1);
-	all->line.x1 = 0;
-	all->line.y1 = 16 * all->e.height / 30;
-	all->line.x2 = all->e.sep_width - 1;
-	all->line.y2 = all->line.y1;
-	ft_line(all, 1);
-}
-
-static void		display_file(t_env e, t_size size, int color_txt)
+void		display_file(t_env e, t_size size, int color_txt)
 {
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 20, 20, color_txt,
 		"FILE");
@@ -60,7 +39,7 @@ static void		display_file(t_env e, t_size size, int color_txt)
 		color_txt, ft_itoa(size.min_z));
 }
 
-static void		display_view(t_env e, t_size size, int color_txt)
+void		display_view(t_env e, t_size size, int color_txt)
 {
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 20, 7 * e.height / 30 + 20,
 		color_txt, "VIEW");
@@ -86,13 +65,17 @@ static void		display_view(t_env e, t_size size, int color_txt)
 		color_txt, "center_y :");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2, 13 * e.height / 30,
 		color_txt, ft_itoa(size.center_y));
+}
+
+void		display_view2(t_env e, t_size size, int color_txt)
+{
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 14 * e.height / 30,
 		color_txt, "rot_z :");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 40, 14 * e.height / 30,
 		color_txt, ft_itoa(size.rot_z));
 }
 
-static void		display_com(t_env e, int color_txt)
+void		display_com(t_env e, int color_txt)
 {
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 90, 16 * e.height / 30 + 20,
 		color_txt, "KEYBOARD SHORTCUT");
@@ -114,12 +97,4 @@ static void		display_com(t_env e, int color_txt)
 		color_txt, "7(&) / 8(*) : rotate z -/+");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 28 * e.height / 30,
 		color_txt, "Esc or Q : Close Window");
-}
-
-void			display_legend(t_all *all)
-{
-	display_seprarator(all, 0xFFFFFF);
-	display_file(all->e, all->size, 0xFFFFFF);
-	display_view(all->e, all->size, 0xFFFFFF);
-	display_com(all->e, 0xFFFFFF);
 }

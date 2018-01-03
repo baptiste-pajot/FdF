@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 18:40:27 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 13:48:54 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,9 @@
 # define FDF_H
 
 # include <stdlib.h>
+# include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <math.h>
 # include "libft/libft.h"
 # include "../minilibx_macos/mlx.h"
@@ -77,12 +79,20 @@ typedef struct	s_all
 }				t_all;
 
 int				***ft_read(char *name, t_all *all);
+int				size_tab(int fd, t_all *all);
+int				***make_tab(t_all *all);
+int				***fill_tab(int fd, t_all *all);
 int				display(t_all *all, char *name);
 int				ft_line(t_all *all, int imorleg);
 int				print_tab(t_all *all, int indice);
 int				tab_proj(t_all *all);
 void			display_legend(t_all *all);
 void			display_legend_line(t_all *all);
+void			display_seprarator(t_all *all, int color);
+void			display_file(t_env e, t_size size, int color_txt);
+void			display_view(t_env e, t_size size, int color_txt);
+void			display_view2(t_env e, t_size size, int color_txt);
+void			display_com(t_env e, int color_txt);
 void			image_black(t_all *all);
 int				*color_palette(int argc, char *argv[], t_all *all);
 void			display_seprarator(t_all *all, int color);
