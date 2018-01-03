@@ -6,12 +6,30 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 16:01:42 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 13:49:03 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 13:56:51 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int		***ft_read2(int fd, t_all *all)
+{
+	if ((all->tab = make_tab(all)) == NULL)
+	{
+		ft_putstr("Impossible to build tab\n");
+		return (NULL);
+	}
+	if ((all->tab = fill_tab(fd, all)) == NULL)
+	{
+		ft_putstr("Impossible to fill tab\n");
+		return (NULL);
+	}
+	close(fd);
+	if (all->size.color_tab != NULL)
+		fill_tab_color_palette(all);
+	return (all->tab);
+}
 
 int				***ft_read(char *name, t_all *all)
 {
@@ -23,22 +41,7 @@ int				***ft_read(char *name, t_all *all)
 			return (NULL);
 		close(fd);
 		if ((fd = open(name, O_RDONLY)) > 2)
-		{
-			if ((all->tab = make_tab(all)) == NULL)
-			{
-				ft_putstr("Impossible to build tab\n");
-				return (NULL);
-			}
-			if ((all->tab = fill_tab(fd, all)) == NULL)
-			{
-				ft_putstr("Impossible to fill tab\n");
-				return (NULL);
-			}
-			close(fd);
-			if (all->size.color_tab != NULL)
-				fill_tab_color_palette(all);
-			return (all->tab);
-		}
+			return (ft_read2(fd, all));
 		else
 			ft_putstr("Impossible to reopen file\n");
 	}

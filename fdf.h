@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 13:48:54 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 14:09:00 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,7 +83,7 @@ int				size_tab(int fd, t_all *all);
 int				***make_tab(t_all *all);
 int				***fill_tab(int fd, t_all *all);
 int				display(t_all *all, char *name);
-int				ft_line(t_all *all, int imorleg);
+int				ft_line(t_all *all);
 int				print_tab(t_all *all, int indice);
 int				tab_proj(t_all *all);
 void			display_legend(t_all *all);
@@ -97,5 +97,6 @@ void			image_black(t_all *all);
 int				*color_palette(int argc, char *argv[], t_all *all);
 void			display_seprarator(t_all *all, int color);
 void			fill_tab_color_palette(t_all *all);
+void			mlx_pixel_image(t_all *all, int x, int y, int xory);
 
 #endif
