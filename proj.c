@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 19:45:25 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 20:46:44 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,7 +57,10 @@ static double		*constante(t_all *all)
 	double		*cst;
 
 	if ((cst = (double*)malloc(sizeof(double) * 5)) == NULL)
+	{
+		ft_putendl("Impossible to create constante tab");
 		return (NULL);
+	}
 	cst[0] = sqrt(2) / 2 * all->size.scale_xy;
 	cst[2] = 1 / sqrt(6) * all->size.scale_xy;
 	cst[1] = sqrt(2.0 / 3.0) * all->size.scale_z;
@@ -96,8 +99,7 @@ int					tab_proj(t_all *all)
 	double		*c;
 
 	set_param(all);
-	c = constante(all);
-	if (c == NULL)
+	if ((c = constante(all)) == NULL)
 		return (-1);
 	i = -1;
 	while (++i < all->size.len_y)
@@ -105,15 +107,16 @@ int					tab_proj(t_all *all)
 		j = -1;
 		while (++j < all->size.len_x)
 		{
-			all->tab[i][j][2] = all->size.center_x - c[0] * (c[3] *
-				(all->size.len_x - all->size.len_y) + c[4] * (all->size.len_x
-				+ all->size.len_y - 2)) / 2 + c[0] * (c[3] * (j - i) +
-				c[4] * (i + j));
+			all->tab[i][j][2] = all->size.center_x - c[0] * (c[3] * 
+				(all->size.len_x - all->size.len_y) + c[4] * (all->size.len_x +
+				all->size.len_y - 2)) / 2 + c[0] * (c[3] * (j - i) + c[4] *
+				(i + j));
 			all->tab[i][j][3] = all->size.center_y - c[2] * ((all->size.len_x +
 				all->size.len_y - 2) * c[3] + c[4] * (all->size.len_y -
 				all->size.len_x)) / 2 - c[1] * all->tab[i][j][0] + c[2] *
 				(c[3] * (i + j) + c[4] * (i - j));
 		}
 	}
+	ft_memdel((void**)&c);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/03 15:17:23 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 17:07:40 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 21:19:49 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,10 +38,32 @@ static void		keyboard_funct2(int keycode, t_all *all)
 			-170;
 }
 
+static void		free_tab(t_all *all)
+{
+	int		i;
+	int		j;
+
+	mlx_destroy_image(all->e.mlx, all->e.image);
+	mlx_destroy_image(all->e.mlx, all->e.image_black_legend);
+	ft_memdel((void**)&all->size.color_tab);
+	i = -1;
+	while (++i < all->size.len_y)
+	{
+		j = -1;
+		while (++j < all->size.len_x)
+			ft_memdel((void**)&all->tab[i][j]);
+		ft_memdel((void**)&all->tab[i]);
+	}
+	ft_memdel((void**)&all->tab);
+}
+
 int				keyboard_funct(int keycode, t_all *all)
 {
 	if (keycode == 53 || keycode == 12)
+	{
+		free_tab(all);
 		exit(0);
+	}
 	if ((keycode >= 123 && keycode <= 126) || (keycode >= 18 && keycode <= 23)
 			|| keycode == 26 || keycode == 28)
 	{

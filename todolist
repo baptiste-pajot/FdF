@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/01/04 19:18:25 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/04 21:21:52 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -15,7 +15,6 @@
 reste a faire :
 
 - checker retour et protection de chaque fonction avec message d'erreur
-- malloc/free et image destroy
 - erreur perror strerror
 (- gestion faces cachees imprimer noir sur rectangle en dessous jusqu'au bas de fenetre)
 (- echelle graduee)
@@ -23,14 +22,13 @@ reste a faire :
 
 en cours :
 
-- utilisation image minilibx 90% ok nettoyer et tester
-- grande map forum intra 42 en cours lent pour creation tableau mais OK voir avec free
 - /map_fdf/tmap... a faire tous fait jusqu'a map12 compris pour le moment
-
-
 
 fait :
 
+- image destroy
+- malloc/free
+- gestion fichier vide
 - verif fonctions autorisees
 - verif Makefile
 - checker include de chaque source
