@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 16:24:32 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 18:50:20 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
 # include "libft/libft.h"
@@ -100,5 +99,7 @@ void			fill_tab_color_palette(t_all *all);
 void			mlx_pixel_image(t_all *all, int x, int y, int xory);
 int				keyboard_funct(int keycode, t_all *all);
 void			display_line(t_all *all);
+void			display_frame(t_all *all);
+void			display_frame_txt(t_all *all);
 
 #endif

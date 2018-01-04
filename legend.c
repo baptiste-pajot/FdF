@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 12:18:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 13:32:12 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 17:33:49 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,7 +71,7 @@ void		display_view2(t_env e, t_size size, int color_txt)
 {
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 14 * e.height / 30,
 		color_txt, "rot_z :");
-	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 40, 14 * e.height / 30,
+	mlx_string_put(e.mlx, e.win, e.sep_width / 2, 14 * e.height / 30,
 		color_txt, ft_itoa(size.rot_z));
 }
 
@@ -97,4 +97,26 @@ void		display_com(t_env e, int color_txt)
 		color_txt, "7(&) / 8(*) : rotate z -/+");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 28 * e.height / 30,
 		color_txt, "Esc or Q : Close Window");
+}
+
+void		display_frame_txt(t_all *all)
+{
+	all->line.x1 = all->e.width - 150;
+	all->line.y1 = all->e.height - 150;
+	all->line.x2 = all->line.x1 + sqrt(2) / 2 * 100 * (cos(all->size.rot_z *
+		M_PI / 180) + sin(all->size.rot_z * M_PI / 180));
+	all->line.y2 = all->line.y1 + 1 / sqrt(6) * 100 * (cos(all->size.rot_z *
+		M_PI / 180) - sin(all->size.rot_z * M_PI / 180));
+	mlx_string_put(all->e.mlx, all->e.win, all->line.x2 + 10, all->line.y2,
+		0xFFFFFF, "X");
+	all->line.x2 = all->line.x1 + sqrt(2) / 2 * 100 * (-cos(all->size.rot_z *
+		M_PI / 180) + sin(all->size.rot_z * M_PI / 180));
+	all->line.y2 = all->line.y1 + 1 / sqrt(6) * 100 * (cos(all->size.rot_z *
+		M_PI / 180) + sin(all->size.rot_z * M_PI / 180));
+	mlx_string_put(all->e.mlx, all->e.win, all->line.x2 + 10, all->line.y2,
+		0xFFFFFF, "Y");
+	all->line.x2 = all->line.x1;
+	all->line.y2 = all->line.y1 - sqrt(2.0 / 3.0) * 100;
+	mlx_string_put(all->e.mlx, all->e.win, all->line.x2 + 10, all->line.y2,
+		0xFFFFFF, "Z");
 }

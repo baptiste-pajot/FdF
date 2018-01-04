@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/03 13:26:25 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 15:01:52 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 16:53:35 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@ void			display_legend(t_all *all)
 	display_view(all->e, all->size, 0xFFFFFF);
 	display_view2(all->e, all->size, 0xFFFFFF);
 	display_com(all->e, 0xFFFFFF);
+	display_frame_txt(all);
 }
 
 static void		mlx_pixel_image_leg(t_all *all, int x, int y)

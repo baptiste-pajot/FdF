@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/03 15:17:23 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 15:31:51 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 17:07:40 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,6 +50,7 @@ int				keyboard_funct(int keycode, t_all *all)
 		tab_proj(all);
 		ft_bzero(all->e.char_image, all->e.size_line * all->e.height - 1);
 		display_line(all);
+		display_frame(all);
 		mlx_put_image_to_window(all->e.mlx, all->e.win, all->e.image, 0, 0);
 		if (all->e.width >= 1000 && all->e.height >= 600)
 		{

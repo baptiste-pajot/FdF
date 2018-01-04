@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/18 16:30:10 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/02 18:10:35 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 18:48:47 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,7 +52,7 @@ int				*color_palette(int argc, char *argv[], t_all *all)
 		all->size.color_tab[2] = 0x008800;
 		all->size.color_tab[3] = 0xA95906;
 		all->size.color_tab[4] = 0x783F04;
-		all->size.color_tab[5] = 0xEBEBEB;
+		all->size.color_tab[5] = 0x8A8A8A;
 		all->size.color_tab[6] = 0xFFFFFF;
 		all->size.nb_color = 7;
 		if (ft_atoi(argv[4]) == 0)
@@ -71,20 +71,23 @@ static void		fill_tab_color_palette2(t_all *all, int i, int j)
 		all->tab[i][j][1] = all->size.color_tab[0];
 	else if (all->size.nb_color < 0 && all->size.max_z < 7)
 		all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0]];
-	else if (all->size.nb_color < 0 && (color_ind = (all->tab[i][j][0] -
-		1) * 6 / (all->size.max_z - 1)) != 6)
-		all->tab[i][j][1] = all->size.color_tab[color_ind + 1];
 	else if (all->size.nb_color < 0)
-		all->tab[i][j][1] = all->size.color_tab[6];
+	{
+		color_ind = all->tab[i][j][0] * 6 / all->size.max_z;
+		all->tab[i][j][1] = (color_ind == 6) ? all->size.color_tab[6] :
+			all->size.color_tab[color_ind + 1];
+	}
 	else if (all->size.max_z - all->size.min_z < all->size.nb_color)
 		all->tab[i][j][1] = all->size.color_tab[all->tab[i][j][0] -
 			all->size.min_z];
-	else if ((color_ind = (all->tab[i][j][0] - all->size.min_z) *
-		all->size.nb_color / (all->size.max_z - all->size.min_z)) !=
-		all->size.nb_color)
-		all->tab[i][j][1] = all->size.color_tab[color_ind];
 	else
-		all->tab[i][j][1] = all->size.color_tab[all->size.nb_color - 1];
+	{
+		color_ind = (all->tab[i][j][0] - all->size.min_z) * all->size.nb_color
+			/ (all->size.max_z - all->size.min_z);
+		all->tab[i][j][1] = (color_ind == all->size.nb_color) ?
+			all->size.color_tab[all->size.nb_color - 1] :
+			all->size.color_tab[color_ind];
+	}
 }
 
 void			fill_tab_color_palette(t_all *all)

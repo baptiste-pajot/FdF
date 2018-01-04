@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 17:39:08 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 16:04:38 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -99,6 +99,7 @@ static int		display2(t_all *all)
 	all->size.modify = 0;
 	tab_proj(all);
 	display_line(all);
+	display_frame(all);
 	mlx_put_image_to_window(all->e.mlx, all->e.win, all->e.image, 0, 0);
 	if (all->e.width >= 1000 && all->e.height >= 600)
 	{

@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/01/03 16:41:17 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/04 18:48:21 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,30 +21,23 @@ reste a faire :
 - verif Makefile
 - installation librairie check compilation
 - verif fonctions autorisees
-- gestion faces cachees imprimer noir sur rectangle en dessous jusqu'au bas de fenetre
-- repere x y z dans un coin
-- echelle graduee
+(- gestion faces cachees imprimer noir sur rectangle en dessous jusqu'au bas de fenetre)
+(- echelle graduee)
 - check limite int float pendant modif value ou en entree
 
 en cours :
 
-- echelles automatiques  OK 95% NOK carte lyon et carte avec 2 pointes
 - utilisation image minilibx 90% ok nettoyer et tester
-- activation couleur en fonction altitudie 90% voir etages hauteur identiques
 - grande map forum intra 42 en cours lent pour creation tableau mais OK voir avec free
-- legende HUD raccourci commandes + infos 100% OK + commande a venir
 - /map_fdf/tmap... a faire tous fait jusqu'a map12 compris pour le moment
-- interaction clavier/souris
-	- rotation OK 100% OK 
-	- deplacement OK 100%
-	- zoom OK 100%
-	- changement perspective iso/parallelle/conique
-	- ...
 
 
 
 fait :
 
+- activation couleur en fonction altitudie 100% OK
+- repere x y z dans un coin OK
+- echelles automatiques 100% OK
 - norme OK
 - afficher etape creation si tableau grand OK
 - tester changement taille fenetre OK 100%
@@ -57,3 +50,10 @@ fait :
 - entree echelle en atod et non en atoi math.h OK
 - bug floating exception lors du dezoom OK division par zero supprimer
 - reimprimer fond noir apres display carte OK
+- interaction clavier/souris
+	- rotation OK 100% OK 
+	- deplacement OK 100%
+	- zoom OK 100%
+	- changement perspective iso/parallelle/conique
+	- ...
+- legende HUD raccourci commandes + infos 100% OK + commande a venir
