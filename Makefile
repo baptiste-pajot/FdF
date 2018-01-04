@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 16:37:12 by bpajot            #+#    #+#              #
-#    Updated: 2018/01/04 19:03:34 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/04 19:20:10 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LFT_FLAGS = -L libft/ -lft
 PATH_SRCS = ./
 PATH_OBJS = ./
 PATH_INCS = ./
-FILES = main.c read.c display.c line.c print.c proj.c legend.c legend2.c \
+FILES = main.c read.c display.c line.c proj.c legend.c legend2.c \
 		image.c color.c tab.c keyboard.c frame.c
 SRCS = $(addprefix $(PATH_SRCS), $(FILES))
 OBJS = $(addprefix $(PATH_OBJS), $(FILES:.c=.o))

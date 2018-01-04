@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 18:50:20 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 19:20:22 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include "libft/libft.h"
-# include "../minilibx_macos/mlx.h"
+# include "minilibx_macos/mlx.h"
 
 # define W_HEIGHT 1200
 # define W_WIDTH 2400
@@ -83,7 +83,6 @@ int				***make_tab(t_all *all);
 int				***fill_tab(int fd, t_all *all);
 int				display(t_all *all, char *name);
 int				ft_line(t_all *all);
-int				print_tab(t_all *all, int indice);
 int				tab_proj(t_all *all);
 void			display_legend(t_all *all);
 void			display_legend_line(t_all *all);

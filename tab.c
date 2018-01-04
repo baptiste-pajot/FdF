@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/03 13:41:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 18:34:45 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 20:36:52 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,11 +30,16 @@ int				size_tab(int fd, t_all *all)
 			ft_putendl("Found wrong line length. Exiting");
 			return (-1);
 		}
-		(all->size.len_y)++;
+		if (all->size.len_x <= 0 || (all->size.len_y)++ == 2147483647)
+		{
+			ft_putendl("File without or too much data");
+			return (-1);
+		}
 	}
-	if (all->size.len_y > 200)
-		ft_putendl("check size OK");
-	return (0);
+	if (all->size.len_y > 0)
+		return (0);
+	ft_putendl("File without data");
+	return (-1);
 }
 
 int				***make_tab(t_all *all)
@@ -60,7 +65,7 @@ int				***make_tab(t_all *all)
 		}
 	}
 	if (all->size.len_y > 200)
-		ft_putendl("tab creation OK");
+		ft_putendl("Tab creation OK");
 	return (all->tab);
 }
 
@@ -104,6 +109,6 @@ int				***fill_tab(int fd, t_all *all)
 	}
 	ft_memdel((void**)&tab_txt);
 	if (all->size.len_y > 200)
-		ft_putendl("tab fill OK");
+		ft_putendl("Tab fill OK");
 	return (all->tab);
 }

@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/13 21:53:59 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/01/04 18:48:21 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/04 19:18:25 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,13 +14,9 @@
 
 reste a faire :
 
-- checker include de chaque source
 - checker retour et protection de chaque fonction avec message d'erreur
 - malloc/free et image destroy
 - erreur perror strerror
-- verif Makefile
-- installation librairie check compilation
-- verif fonctions autorisees
 (- gestion faces cachees imprimer noir sur rectangle en dessous jusqu'au bas de fenetre)
 (- echelle graduee)
 - check limite int float pendant modif value ou en entree
@@ -35,6 +31,9 @@ en cours :
 
 fait :
 
+- verif fonctions autorisees
+- verif Makefile
+- checker include de chaque source
 - activation couleur en fonction altitudie 100% OK
 - repere x y z dans un coin OK
 - echelles automatiques 100% OK

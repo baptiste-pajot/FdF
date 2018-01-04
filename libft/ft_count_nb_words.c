@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/21 14:28:17 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/21 14:28:22 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 20:07:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,9 +31,9 @@ size_t		ft_count_nb_words(char const *s, char c)
 					nb_word = 1;
 			}
 			else if ((s[i - 1] == c) && s[i] != c)
-			{
 				nb_word++;
-			}
+			if (nb_word == 2147483647)
+				return (0);
 			i++;
 		}
 		return (nb_word);

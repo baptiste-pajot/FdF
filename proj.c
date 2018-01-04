@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 18:34:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/04 19:45:25 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,8 @@ static double		tab_scale_xy(t_all *all)
 	double		scale_xy;
 
 	width_proj = sqrt(2) / 2 * (all->size.len_y + all->size.len_x - 2);
+	if (width_proj == 0)
+		return (1);
 	height_proj = 1 / sqrt(6) * (all->size.len_y + all->size.len_x - 2);
 	if (all->e.width >= 1000 && all->e.height >= 600)
 		scale_xy = (all->e.width - all->e.sep_width) / width_proj * 0.8;
