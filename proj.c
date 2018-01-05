@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/13 10:06:39 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 20:46:44 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/05 16:23:52 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -107,7 +107,7 @@ int					tab_proj(t_all *all)
 		j = -1;
 		while (++j < all->size.len_x)
 		{
-			all->tab[i][j][2] = all->size.center_x - c[0] * (c[3] * 
+			all->tab[i][j][2] = all->size.center_x - c[0] * (c[3] *
 				(all->size.len_x - all->size.len_y) + c[4] * (all->size.len_x +
 				all->size.len_y - 2)) / 2 + c[0] * (c[3] * (j - i) + c[4] *
 				(i + j));

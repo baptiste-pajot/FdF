@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:19 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 19:55:31 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/05 18:00:42 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,21 +32,21 @@ int				main(int argc, char *argv[])
 	int		ret;
 
 	all.tab = NULL;
+	all.size.len_x = -1;
+	all.size.len_y = -1;
+	all.size.min_z = 0;
+	all.size.max_z = 0;
+	all.size.color_tab = NULL;
+	all.size.scale_xy_ini = -1;
+	all.size.scale_z_ini = -1;
 	if (argc > 1 && argc < 30)
 	{
-		all.size.len_x = -1;
-		all.size.len_y = -1;
-		all.size.min_z = 0;
-		all.size.max_z = 0;
-		all.size.color_tab = NULL;
-		all.size.scale_xy_ini = -1;
-		if (argc > 2 && (ret = ft_atoi(argv[2])) > 0)
+		if (argc > 2 && (ret = ft_atoi(argv[2])) > 0 && ret <= 10000)
 			all.size.scale_xy_ini = ret;
-		all.size.scale_z_ini = -1;
-		if (argc > 3 && (ret = ft_atoi(argv[3])) > 0)
+		if (argc > 3 && (ret = ft_atoi(argv[3])) > 0 && ret <= 10000)
 			all.size.scale_z_ini = ret;
-		if (argc > 4)
-			all.size.color_tab = color_palette(argc, argv, &all);
+		if (argc > 4 && (color_palette(argc, argv, &all) < 0))
+			return (-1);
 		if ((all.tab = ft_read(argv[1], &all)) == NULL)
 			return (-1);
 		return (display(&all, argv[1]));

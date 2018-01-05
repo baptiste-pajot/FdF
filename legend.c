@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 12:18:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 17:33:49 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/05 18:26:42 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,9 @@ void		display_file(t_env e, t_size size, int color_txt)
 
 void		display_view(t_env e, t_size size, int color_txt)
 {
+	char		*dec_part;
+
+	dec_part = 0;
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 20, 7 * e.height / 30 + 20,
 		color_txt, "VIEW");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 9 * e.height / 30,
@@ -49,14 +52,24 @@ void		display_view(t_env e, t_size size, int color_txt)
 		color_txt, "iso");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 10 * e.height / 30,
 		color_txt, "scale_xy :");
+	dec_part = ft_itoa((int)(size.scale_xy * 100) % 100);
+	if (ft_strlen(dec_part) < 2)
+		dec_part = ft_strjoin("0", dec_part);
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2, 10 * e.height / 30,
 		color_txt, ft_strjoin(ft_strjoin(ft_itoa(size.scale_xy), "."),
-		ft_itoa((int)(size.scale_xy * 100) % 100)));
+		dec_part));
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 11 * e.height / 30,
 		color_txt, "scale_z :");
+	dec_part = ft_itoa((int)(size.scale_z * 100) % 100);
+	if (ft_strlen(dec_part) < 2)
+		dec_part = ft_strjoin("0", dec_part);
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2, 11 * e.height / 30,
 		color_txt, ft_strjoin(ft_strjoin(ft_itoa(size.scale_z), "."),
-		ft_itoa((int)(size.scale_z * 100) % 100)));
+		dec_part));
+}
+
+void		display_view2(t_env e, t_size size, int color_txt)
+{
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 12 * e.height / 30,
 		color_txt, "center_x :");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2, 12 * e.height / 30,
@@ -65,10 +78,6 @@ void		display_view(t_env e, t_size size, int color_txt)
 		color_txt, "center_y :");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2, 13 * e.height / 30,
 		color_txt, ft_itoa(size.center_y));
-}
-
-void		display_view2(t_env e, t_size size, int color_txt)
-{
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2 - 130, 14 * e.height / 30,
 		color_txt, "rot_z :");
 	mlx_string_put(e.mlx, e.win, e.sep_width / 2, 14 * e.height / 30,

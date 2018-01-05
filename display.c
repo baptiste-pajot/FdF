@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/15 11:51:06 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 16:04:38 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/05 17:49:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -97,7 +97,8 @@ static int		display2(t_all *all)
 	all->e.win = mlx_new_window(all->e.mlx, all->e.width, all->e.height,
 		"FDF bpajot");
 	all->size.modify = 0;
-	tab_proj(all);
+	if (tab_proj(all) < 0)
+		return (-1);
 	display_line(all);
 	display_frame(all);
 	mlx_put_image_to_window(all->e.mlx, all->e.win, all->e.image, 0, 0);
@@ -133,6 +134,5 @@ int				display(t_all *all, char *name)
 		all->e.width = 2400;
 		all->e.height = 1200;
 	}
-	display2(all);
-	return (0);
+	return (display2(all));
 }

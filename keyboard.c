@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/03 15:17:23 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 21:19:49 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/05 18:08:14 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,21 +15,21 @@
 
 static void		keyboard_funct2(int keycode, t_all *all)
 {
-	if (keycode == 126)
+	if (keycode == 126 && all->size.center_y >= -10000)
 		all->size.center_y -= 50;
-	if (keycode == 125)
+	if (keycode == 125 && all->size.center_y <= 10000)
 		all->size.center_y += 50;
-	if (keycode == 123)
+	if (keycode == 123 && all->size.center_x >= -10000)
 		all->size.center_x -= 50;
-	if (keycode == 124)
+	if (keycode == 124 && all->size.center_x <= 10000)
 		all->size.center_x += 50;
-	if (keycode == 20 || keycode == 18)
+	if ((keycode == 20 || keycode == 18) && all->size.scale_xy >= 0.00001)
 		all->size.scale_xy /= 1.2;
-	if (keycode == 21 || keycode == 19)
+	if ((keycode == 21 || keycode == 19) && all->size.scale_xy <= 10000)
 		all->size.scale_xy *= 1.2;
-	if (keycode == 23 || keycode == 18)
+	if ((keycode == 23 || keycode == 18) && all->size.scale_xy >= 0.00001)
 		all->size.scale_z /= 1.2;
-	if (keycode == 22 || keycode == 19)
+	if ((keycode == 22 || keycode == 19) && all->size.scale_xy <= 10000)
 		all->size.scale_z *= 1.2;
 	if (keycode == 26)
 		all->size.rot_z = (all->size.rot_z > -180) ? all->size.rot_z - 10 : 170;

@@ -6,16 +6,15 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/18 16:30:10 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 18:48:47 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/05 16:23:30 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		color_palette2(int argc, char *argv[], t_all *all)
+static void		color_palette3(int argc, char *argv[], t_all *all)
 {
-	char	*p;
 	int		i;
 
 	i = 3;
@@ -24,20 +23,37 @@ static void		color_palette2(int argc, char *argv[], t_all *all)
 		if (ft_atoi(argv[i]) >= 0)
 			all->size.nb_color++;
 	}
-	i = 3;
-	p = NULL;
-	all->size.color_tab = (int*)ft_memalloc(sizeof(*(all->size.color_tab))
-		* all->size.nb_color);
-	while (++i < argc)
-	{
-		if ((p = ft_strstr(argv[i], "0x")) != NULL)
-			all->size.color_tab[i - 4] = ft_atoi_base(p + 2, 16);
-		else
-			all->size.color_tab[i - 4] = ft_atoi(argv[i]);
-	}
 }
 
-int				*color_palette(int argc, char *argv[], t_all *all)
+static int		color_palette2(int argc, char *argv[], t_all *all)
+{
+	char	*p;
+	int		i;
+
+	color_palette3(argc, argv, all);
+	i = 3;
+	if ((all->size.color_tab = (int*)ft_memalloc(sizeof(*(all->size.color_tab))
+		* all->size.nb_color)) == NULL)
+		return (-1);
+	while (++i < argc && i > 0)
+	{
+		if ((p = ft_strstr(argv[i], "0x")) != NULL &&
+			((all->size.color_tab[i - 4] = ft_atoi_base(p + 2, 16)) < 0 ||
+			all->size.color_tab[i - 4] > 16777215))
+			i = -1;
+		if (p == NULL && ((all->size.color_tab[i - 4] = ft_atoi(argv[i])) < 0
+			|| all->size.color_tab[i - 4] > 16777215))
+			i = -1;
+		if (i < 0)
+		{
+			ft_putendl("Color int negative or > 16777215 (0xFFFFFF)");
+			return (-1);
+		}
+	}
+	return (0);
+}
+
+int				color_palette(int argc, char *argv[], t_all *all)
 {
 	int		i;
 
@@ -45,8 +61,9 @@ int				*color_palette(int argc, char *argv[], t_all *all)
 	i = 3;
 	if (ft_atoi(argv[4]) <= 0 && ft_strstr(argv[4], "0x") == NULL)
 	{
-		all->size.color_tab = (int*)ft_memalloc(sizeof(*(all->size.color_tab))
-			* 7);
+		if ((all->size.color_tab =
+			(int*)ft_memalloc(sizeof(*(all->size.color_tab)) * 7)) == NULL)
+			return (-1);
 		all->size.color_tab[0] = 0x0000FF;
 		all->size.color_tab[1] = 0x00FF00;
 		all->size.color_tab[2] = 0x008800;
@@ -58,9 +75,9 @@ int				*color_palette(int argc, char *argv[], t_all *all)
 		if (ft_atoi(argv[4]) == 0)
 			all->size.nb_color = -1;
 	}
-	else
-		color_palette2(argc, argv, all);
-	return (all->size.color_tab);
+	else if (color_palette2(argc, argv, all) < 0)
+		return (-1);
+	return (0);
 }
 
 static void		fill_tab_color_palette2(t_all *all, int i, int j)

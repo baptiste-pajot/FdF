@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/12/21 14:37:00 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2017/12/21 14:37:08 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/05 15:22:43 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -42,14 +42,14 @@ INCS = libft.h
 all: $(NAME)
 
 $(NAME): $(OBJS) $(INCS)
-	@echo "CREATION DE LA LIBFT\n"
+	@echo "CREATION DE LA LIBFT "
 	@ar rcs $@ $^
-	@echo "👍  COMPILATION REUSSIE 👍\\n"
+	@echo "👍  COMPILATION REUSSIE 👍\ "
 
 $(PATH_OBJ)%.o: $(PATH_SRCS)%.c
-	@echo "CREATION $@\n"
+	@echo "CREATION $@ "
 	@$(CC) $(CC_FLAGS) -o $@ -c $<
-	@echo "👍  COMPILATION REUSSIE 👍\\n"
+	@echo "👍  COMPILATION REUSSIE 👍\ "
 
 clean:
 	@/bin/rm -f $(OBJS)

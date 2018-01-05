@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 16:37:12 by bpajot            #+#    #+#              #
-#    Updated: 2018/01/04 21:09:15 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/05 15:22:02 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,14 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C libft
 	make -C minilibx_macos
-	@echo "CREATION DE L'EXECUTABLE\n"
+	@echo "CREATION DE L'EXECUTABLE "
 	@$(CC) $(CC_FLAGS) -o $@ $^ $(LMLX_FLAGS) $(LFT_FLAGS)
-	@echo "👍  COMPILATION REUSSIE 👍\\n"
+	@echo "👍  COMPILATION REUSSIE 👍\ "
 
 $(PATH_OBJ)%.o: $(PATH_SRCS)%.c
-	@echo "CREATION $@\n"
+	@echo "CREATION $@ "
 	@$(CC) $(CC_FLAGS) -o $@ -c $<
-	@echo "👍  COMPILATION REUSSIE 👍\\n"
+	@echo "👍  COMPILATION REUSSIE 👍\ "
 
 clean:
 	make -C libft clean

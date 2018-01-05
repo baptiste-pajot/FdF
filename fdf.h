@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/06 15:15:51 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 19:20:22 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/05 15:28:17 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -92,7 +92,7 @@ void			display_view(t_env e, t_size size, int color_txt);
 void			display_view2(t_env e, t_size size, int color_txt);
 void			display_com(t_env e, int color_txt);
 void			image_black(t_all *all);
-int				*color_palette(int argc, char *argv[], t_all *all);
+int				color_palette(int argc, char *argv[], t_all *all);
 void			display_seprarator(t_all *all, int color);
 void			fill_tab_color_palette(t_all *all);
 void			mlx_pixel_image(t_all *all, int x, int y, int xory);
